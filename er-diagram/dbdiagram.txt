@@ -1,0 +1,31 @@
+https://dbdiagram.io/d
+
+table user{
+  id int [primary key]
+  name varchar
+}
+
+table session{
+  id int [primary key]
+  prompt text
+  narrative text
+  userId int [ref:> user.id]
+}
+
+table scene{
+  id int [primary key]
+  sessionId int [ref:> session.id]
+}
+
+table sceneCard{
+  sceneId int [ref:>scene.id]
+  cardId int [ref:> card.id]
+}
+
+table card{
+  id int [primary key]
+  cardType varchar
+  cardName varchar
+  cardScore int
+  cardDescription text
+}
