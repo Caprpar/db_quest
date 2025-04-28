@@ -1,1 +1,1 @@
-Skriv in all mysql här.
+CREATE DATABASE db_quest
