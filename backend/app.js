@@ -9,9 +9,6 @@ app.use(express.urlencoded({ extended: true }));
 app.use(cors());
 app.use(express.static("public"));
 
-const tempRoutes = require("./routes/tempRoutes");
-app.use(tempRoutes);
-
 const cardRoutes = require("./routes/cardRoutes");
 app.use("/api", cardRoutes);
 
