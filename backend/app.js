@@ -12,6 +12,9 @@ app.use(express.static("public"));
 const tempRoutes = require("./routes/tempRoutes");
 app.use(tempRoutes);
 
+const cardRoutes = require("./routes/cardRoutes");
+app.use("/api", cardRoutes);
+
 app.listen(port, () => {
   console.log(`Backend flora app at port: ${port}`);
 });

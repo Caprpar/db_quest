@@ -1,31 +1,41 @@
 https://dbdiagram.io/d
 
 table user{
-  id int [primary key]
-  name varchar
+  id int [not null, primary key]
+  name varchar [not null]
 }
 
 table session{
-  id int [primary key]
-  prompt text
-  narrative text
-  userId int [ref:> user.id]
+  id int [not null, primary key]
+  prompt text [not null]
+  narrative text [not null]
+  userId int [not null, ref:> user.id]
 }
 
 table scene{
-  id int [primary key]
-  sessionId int [ref:> session.id]
+  id int [not null, primary key]
+  sessionId int [ref:> session.id, not null]
 }
 
 table sceneCard{
-  sceneId int [ref:>scene.id]
-  cardId int [ref:> card.id]
+  sceneId int [ref:>scene.id, not null]
+  cardId int [ref:> card.id, not null]
 }
 
 table card{
-  id int [primary key]
-  cardType varchar
-  cardName varchar
-  cardScore int
+  id int [not null, primary key]
+  cardType varchar [not null]
+  cardName varchar [not null]
+  cardScore int [not null]
   cardDescription text
+}
+
+table tag {
+ id int [not null, primary key]
+ tagName varchar [not null]
+}
+
+table sessionTag{
+  sessionId int [ref:> session.id, not null]
+  tagId int [ref:> tag.id, not null]
 }
