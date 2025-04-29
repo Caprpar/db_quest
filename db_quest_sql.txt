@@ -1,1 +1,57 @@
-CREATE DATABASE db_quest
+-- CREATE DATABASE db_quest;
+USE db_quest;
+
+CREATE TABLE user (
+	id   int NOT NULL AUTO_INCREMENT PRIMARY KEY,
+	name varchar(50)
+);
+
+CREATE TABLE session (
+	id        int  NOT NULL PRIMARY KEY AUTO_INCREMENT,
+	prompt    text NOT NULL,
+	narrative text NOT NULL,
+	userId    int  NOT NULL,
+	FOREIGN KEY (userId) REFERENCES user (id)
+);
+
+CREATE TABLE scene(
+	id int not null PRIMARY KEY AUTO_INCREMENT,
+	sessionId int not null,
+	FOREIGN KEY (sessionId) REFERENCES session(id)
+);
+
+CREATE TABLE card (
+	id              int         NOT NULL AUTO_INCREMENT PRIMARY KEY,
+	cardType        varchar(50) NOT NULL,
+	cardName        varchar(50) NOT NULL,
+	cardScore       int         NOT NULL,
+	cardDescription TEXT
+);
+
+CREATE TABLE sceneCard(
+	sceneId int not null,
+	cardId int not null,
+	FOREIGN KEY (cardId) REFERENCES card(id),
+	FOREIGN KEY (sceneId) REFERENCES scene(id)
+);
+
+CREATE TABLE tag (
+	id      int         NOT NULL PRIMARY KEY,
+	tagName varchar(50) NOT NULL
+);
+
+CREATE TABLE sessionTag(
+	id int not null PRIMARY KEY AUTO_INCREMENT,
+	tagId int not null,
+	FOREIGN KEY (tagId) REFERENCES tag(id)
+);
+
+/*
+drop table sessionTag
+drop table tag
+drop table sceneCard
+drop table card
+drop table scene
+drop table session
+drop table user
+*/
