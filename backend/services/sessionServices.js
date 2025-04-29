@@ -1,7 +1,9 @@
-const connectionMySQL = require("../connectionMySQL")
+const connectionMySQL = require("../connectionMySQL");
 
 function getAllSessions() {
-  connectionMySQL.query()
+  connectionMySQL.query("SELECT * FROM session");
 }
 
-module.exports = {}
+function getSessionsByTag() {}
+
+module.exports = {};

@@ -10,6 +10,11 @@ router.get("/sessions/:user", (req, res) => {
   res.send("hihi")
 })
 
+// GET sessions by tag
+router.get("/sessions/:tag", (req, res) => {
+  res.send("haha")
+})
+
 // POST session to database
 router.post("/sessions/:id", (req, res) => {
   res.send("im getting a session")
