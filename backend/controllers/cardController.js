@@ -34,7 +34,34 @@ exports.createCard = async (req, res) => {
       cardScore,
       cardDescription
     );
-    res.status(200).json({ createdCard });
+    res.status(200).json({ message: "Card created" });
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+};
+
+exports.updateCard = async (req, res) => {
+  try {
+    const { id } = req.params;
+    // get old values
+    const updatedValue = await cardService.getCardById(id);
+
+    // compares old values with new values and updates to new ones
+    for (const [key, value] of Object.entries(req.body)) {
+      if (updatedValue[key] != req.body[key]) {
+        updatedValue[key] = value;
+      }
+    }
+
+    // updatesCard using id with updated values
+    const updatedCard = await cardService.updateCard(
+      updatedValue.cardType,
+      updatedValue.cardName,
+      updatedValue.cardScore,
+      updatedValue.cardDescription,
+      id
+    );
+    res.status(200).json({ message: "Card updated" });
   } catch (err) {
     res.status(500).json({ error: err.message });
   }
@@ -44,7 +71,7 @@ exports.deleteCardById = async (req, res) => {
   try {
     const { id } = req.params;
     const deletedCard = await cardService.deleteCardById(id);
-    res.status(200).json({ deletedCard });
+    res.status(200).json({ message: "Card deleted" });
   } catch (err) {
     res.status(500).json({ error: err.message });
   }
