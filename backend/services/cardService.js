@@ -10,6 +10,26 @@ function getCards() {
   });
 }
 
+function findByType(typeArray) {
+  return new Promise((resolve, reject) => {
+    // selects first index of typeArray
+    let sql = `
+      SELECT * FROM card
+      WHERE cardType LIKE "%${typeArray[0]}%"
+    `;
+    // append sql query for each type if array has more than one index
+    if (typeArray[1]) {
+      typeArray.splice(1).forEach((type) => {
+        sql += ` OR cardType LIKE "%${type}%"`;
+      });
+    }
+    connectionMySQL.query(sql, (err, results) => {
+      if (err) reject(err);
+      else resolve(results);
+    });
+  });
+}
+
 function getCardById(id) {
   return new Promise((resolve, reject) => {
     let sql = "SELECT * FROM card WHERE id = ?";
@@ -64,6 +84,7 @@ function deleteCardById(id) {
 
 module.exports = {
   getCards,
+  findByType,
   getCardById,
   createCard,
   deleteCardById,
