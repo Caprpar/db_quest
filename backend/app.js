@@ -12,8 +12,8 @@ app.use(express.static("public"));
 // const tempRoutes = require("./routes/tempRoutes");
 // app.use(tempRoutes);
 
-const aRoutes = require("./routes/aRoutes");
-app.use(aRoutes);
+const userRoutes = require("./routes/userRoutes");
+app.use(userRoutes);
 
 
 app.listen(port, () => {
