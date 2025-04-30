@@ -10,7 +10,9 @@ app.use(cors());
 app.use(express.static("public"));
 
 const cardRoutes = require("./routes/cardRoutes");
+const sceneRoutes = require("./routes/sceneRoutes")
 app.use("/api", cardRoutes);
+app.use("/api", sceneRoutes);
 
 app.listen(port, () => {
   console.log(`Backend flora app at port: ${port}`);
