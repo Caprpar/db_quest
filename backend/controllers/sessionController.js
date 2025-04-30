@@ -4,9 +4,77 @@ async function getAllSessions(req, res) {
   try {
     const sessions = await sessionService.getAllSessions();
     res.status(200).send(sessions);
-  } catch {
+  } catch (error) {
     res.status(500).send("whoops");
   }
 }
 
-module.exports = { getAllSessions };
+async function getSessionsById(req, res) {
+  try {
+    const id = req.params.id;
+    const sessions = await sessionService.getSessionsById(id);
+    res.status(200).send(sessions);
+  } catch (error) {
+    res.status(500).send(error);
+  }
+}
+
+async function getSessionsByUser(req, res) {
+  try {
+    const sessions = await sessionService.getSessionsByUser(req.params.id);
+    res.status(200).send(sessions);
+  } catch (error) {
+    res.status(500).send(error);
+  }
+}
+
+async function getSessionsByTag(req, res) {
+  try {
+    const { tags } = req.body;
+    const sessions = await sessionService.getSessionsByTag(tags);
+    res.status(200).send(sessions);
+  } catch (error) {
+    res.status(500).send(error);
+  }
+}
+
+async function postSession(req, res) {
+  try {
+    const { sessionPrompt, sessionNarrative, sessionUserId } = req.body;
+    const result = await sessionService.postSession(
+      sessionPrompt,
+      sessionNarrative,
+      sessionUserId
+    );
+    res.status(200).send("session Created");
+  } catch (err) {
+    console.log(err);
+    res.status(400).send("oop oop");
+  }
+}
+
+async function updateSession(req, res) {
+  try {
+  } catch (error) {}
+}
+
+async function deleteSession(req, res) {
+  try {
+    console.log(req.params);
+    const deleteResult = await sessionService.deleteSession(req.params.id);
+    console.log(deleteResult);
+    res.status(200).send(deleteResult);
+  } catch (error) {
+    res.status(500).send(error);
+  }
+}
+
+module.exports = {
+  getAllSessions,
+  getSessionsById,
+  getSessionsByTag,
+  getSessionsByUser,
+  postSession,
+  updateSession,
+  deleteSession
+};
