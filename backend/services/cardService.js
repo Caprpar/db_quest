@@ -35,10 +35,23 @@ function createCard(cardType, cardName, cardScore, cardDescription) {
   });
 }
 
+function updateCard(cardType, cardName, cardScore, cardDescription, id) {
+  return new Promise((resolve, reject) => {
+    let sql = `
+    UPDATE card SET cardType = ?, cardName = ?, cardScore = ?, cardDescription = ? where card.id = ?
+    `;
+    const params = [cardType, cardName, cardScore, cardDescription, id];
+    connectionMySQL.query(sql, params, (err, results) => {
+      if (err) reject(err);
+      else resolve(results[0]);
+    });
+  });
+}
+
 function deleteCardById(id) {
   return new Promise((resolve, reject) => {
     let sql = `
-    DELETE FROM sceneCard WHERE cardId = ?;
+    -- DELETE FROM sceneCard WHERE cardId = ?;
     DELETE FROM card WHERE id = ?;
     `;
     const params = [id, id];
@@ -53,5 +66,6 @@ module.exports = {
   getCards,
   getCardById,
   createCard,
-  deleteCardById
+  deleteCardById,
+  updateCard
 };
