@@ -1,10 +1,5 @@
 const connectionMySQL = require ("../connectionMySQL");
 
-/*
-TODO    getScenes
-        getSceneById
-        createScene
-*/
 
 function getScenes() {
     return new Promise((resolve, reject) => {
@@ -36,7 +31,7 @@ function createScene (sessionId) {
         const params = [sessionId];
         connectionMySQL.query(sql, params, (err, results) => {
             if (err) reject (err);
-            else resolve(results); // else resolve(results[0]);
+            else resolve(results); 
         });
     });
 }
