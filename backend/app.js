@@ -19,6 +19,12 @@ app.use("/api", cardRoutes);
 app.use("/api", sceneRoutes);
 app.use(userRoutes);
 
+const promptRoutes = require("./routes/promptRoutes");
+app.use("/api", promptRoutes);
+
+const connectionMongoDB = require("./connectionMongoDB");
+connectionMongoDB();
+
 app.listen(port, () => {
   console.log(`Backend flora app at port: ${port}`);
 });
