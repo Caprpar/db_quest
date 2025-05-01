@@ -12,7 +12,7 @@ function createTag () {}
 
 function getTags() {
   return new Promise((resolve, reject) => {
-    let sql = "SELECT * FROM tags";
+    let sql = "SELECT * FROM tag";
     connectionMySQL.query(sql, (err, result) => {
       if (err) reject(err);
       else resolve(result);
@@ -22,6 +22,4 @@ function getTags() {
 
 module.exports = {
   getTags
-  /*   getTagById,
-  createTag */
 };
