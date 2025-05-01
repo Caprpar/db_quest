@@ -2,12 +2,17 @@ const cardService = require("../services/cardService");
 
 exports.getCards = async (req, res) => {
   try {
-    const { type } = req.query;
+    const { type, scene } = req.query;
+    console.log(req.query);
     if (type) {
       const typeArray = type.split(",").map((t) => t.trim().toLowerCase());
       const filteredCards = await cardService.findByType(typeArray);
       console.log(filteredCards);
       return res.json({ filteredCards });
+    }
+    if (scene) {
+      const sceneCards = await cardService.getSceneCards(scene);
+      return res.json({ sceneCards });
     }
     const cards = await cardService.getCards();
     res.status(200).json({ cards });
