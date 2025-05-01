@@ -17,6 +17,8 @@ router.get("/sessions/tags", sessionController.getSessionsByTag);
 // POST session to database
 router.post("/sessions", sessionController.postSession);
 
+router.post("/session/addtagtosession", sessionController.addTagToSession);
+
 // UPDATE session in database
 router.put("/sessions/:id", sessionController.updateSession);
 

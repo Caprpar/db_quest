@@ -15,8 +15,10 @@ app.use("/api", sessionRoutes);
 const userRoutes = require("./routes/userRoutes");
 const cardRoutes = require("./routes/cardRoutes");
 const sceneRoutes = require("./routes/sceneRoutes");
+const tagRoutes = require("./routes/tagRoutes");
 app.use("/api", cardRoutes);
 app.use("/api", sceneRoutes);
+app.use("/api", tagRoutes);
 app.use("/api", userRoutes);
 
 const promptRoutes = require("./routes/promptRoutes");

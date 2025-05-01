@@ -60,6 +60,19 @@ function postSession(prompt, narrative, userid) {
   });
 }
 
+// # addTagToSession
+
+function addTagToSession(sessionId, tagId) {
+  return new Promise((resolve, reject) => {
+    let sql = "INSERT INTO sessionTag (sessionId, tagId) VALUES (?,?)";
+    let params = [sessionId, tagId];
+    connectionMySQL.query(sql, params, (err, result) => {
+      if (err) reject(err);
+      else resolve(result);
+    });
+  });
+}
+
 function updateSession(narr, id) {
   return new Promise((resolve, reject) => {
     let sql = `UPDATE session
@@ -105,6 +118,7 @@ module.exports = {
   getSessionsByUser,
   getSessionsByTag,
   postSession,
+  addTagToSession,
   updateSession,
   deleteSession,
   deleteSessionCascade
