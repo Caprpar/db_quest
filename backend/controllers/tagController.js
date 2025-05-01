@@ -24,3 +24,13 @@ exports.getTagById = async (req, res) => {
     res.status(500).json({ error: err.message });
   }
 };
+
+exports.createTag = async (req, res) => {
+  try {
+    const { tagName } = req.body;
+    const createTag = await tagService.createTag(tagName);
+    res.status(200).json({ message: "Tag created" });
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+};

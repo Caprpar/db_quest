@@ -30,7 +30,22 @@ function getTagById(id) {
   });
 }
 
+function createTag(tagName) {
+  return new Promise((resolve, reject) => {
+    let sql = `
+          INSERT INTO tag(tagName)
+          VALUE (?)
+          `;
+    const params = [tagName];
+    connectionMySQL.query(sql, params, (err, results) => {
+      if (err) reject(err);
+      else resolve(results);
+    });
+  });
+}
+
 module.exports = {
   getTags,
-  getTagById
+  getTagById,
+  createTag
 };

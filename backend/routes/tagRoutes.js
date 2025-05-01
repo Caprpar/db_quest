@@ -4,6 +4,7 @@ const tagController = require("../controllers/tagController");
 
 router.get("/tags", tagController.getTags);
 router.get("/tags/:id", tagController.getTagById);
+router.post("/tags", tagController.createTag);
 /* router.get("/scenes/:id", sceneController.getSceneById);
 router.post("/scenes", sceneController.createScene); */
 
