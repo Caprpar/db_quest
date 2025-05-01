@@ -23,4 +23,6 @@ router.put("/sessions/:id", sessionController.updateSession);
 // DELETE session in database
 router.delete("/sessions/:id", sessionController.deleteSession);
 
+router.delete("/sessions/cascade/:id", sessionController.deleteSessionCascade);
+
 module.exports = router;
