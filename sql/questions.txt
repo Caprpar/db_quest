@@ -1,0 +1,9 @@
+-- Select types
+select * from card where card.cardType like "problem" or card.cardType like "solution" or card.cardType like "aid"
+
+-- Lägg till 4 kort till en scene
+INSERT INTO sceneCard(sceneId, cardId)
+values (1, 1),
+       (1, 2),
+       (1, 3),
+       (1, 4);
