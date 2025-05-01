@@ -9,6 +9,9 @@ app.use(express.urlencoded({ extended: true }));
 app.use(cors());
 app.use(express.static("public"));
 
+const sessionRoutes = require("./routes/sessionRoutes");
+app.use("/api", sessionRoutes);
+
 const userRoutes = require("./routes/userRoutes");
 const cardRoutes = require("./routes/cardRoutes");
 const sceneRoutes = require("./routes/sceneRoutes")
