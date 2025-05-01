@@ -1,3 +1,38 @@
+
+-- insert intos basic database fundation
+
+INSERT INTO user(name)
+VALUES ("Caspar"),
+			 ("Morin");
+
+INSERT INTO session(prompt, narrative, userId)
+VALUES ("Du är ute i en öknen och allt du ser är en död dromedar 25 meter bort", "", 1),
+			 ("Det är storm ute på havs, regnkläderna är så gott som meningslösa. Du hör en plötslig smäll..", "", 2);
+
+insert into scene(sessionId)
+values (1),
+       (2);
+
+insert into card(cardType, cardName, cardScore, cardDescription)
+values ("problem", "Våg", 6, "En kraftig våg närmar sig skutan."),
+       ("aid", "Badring", 3, "Denna kom in händigt, frågan är om det räcker.."),
+       ("solution", "Våtdräkt", 9, "Skönt håller mig åtminstone torr!"),
+       ("problem", "Ank svärm", 13, "Yttrar sig på långt håll, hinner jag hitta en lösning?")
+
+insert into sceneCard(sceneId, cardId)
+VALUES (2,1),
+       (2,2),
+       (2,3),
+       (2,4);
+
+insert into tag(tagName)
+values ("Ocean"),
+       ("Desert");
+
+insert into sessionTag(sessionId, tagId)
+VALUES (1, 2),
+       (2, 1);
+
 -- Select types
 select * from card where card.cardType like "problem" or card.cardType like "solution" or card.cardType like "aid"
 
