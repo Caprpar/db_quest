@@ -50,7 +50,7 @@ function createCard(cardType, cardName, cardScore, cardDescription) {
     const params = [cardType, cardName, cardScore, cardDescription];
     connectionMySQL.query(sql, params, (err, results) => {
       if (err) reject(err);
-      else resolve(results[0]);
+      else resolve(results);
     });
   });
 }
@@ -82,11 +82,26 @@ function deleteCardById(id) {
   });
 }
 
+function addCardToScene(cardId, sceneId) {
+  return new Promise((resolve, reject) => {
+    let sql = `
+    INSERT INTO sceneCard(sceneId, cardId)
+    values (?, ?)
+    `;
+    const params = [sceneId, cardId];
+    connectionMySQL.query(sql, params, (err, results) => {
+      if (err) reject(err);
+      else resolve(results[0]);
+    });
+  });
+}
+
 module.exports = {
   getCards,
   findByType,
   getCardById,
   createCard,
   deleteCardById,
-  updateCard
+  updateCard,
+  addCardToScene
 };
