@@ -6,6 +6,4 @@ router.get("/scenes", sceneController.getScenes);
 router.get("/scenes/:id", sceneController.getSceneById);
 router.post("/scenes", sceneController.createScene);
 
-
-
 module.exports = router;

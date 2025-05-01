@@ -41,6 +41,19 @@ function getCardById(id) {
   });
 }
 
+function getSceneCards(sceneid) {
+  return new Promise((resolve, reject) => {
+    let sql = `SELECT * FROM card
+    JOIN sceneCard ON sceneCard.cardId = card.id
+    WHERE sceneCard.sceneId = ?`;
+    const params = [sceneid];
+    connectionMySQL.query(sql, params, (err, results) => {
+      if (err) reject(err);
+      else resolve(results);
+    });
+  });
+}
+
 function createCard(cardType, cardName, cardScore, cardDescription) {
   return new Promise((resolve, reject) => {
     let sql = `
@@ -103,5 +116,6 @@ module.exports = {
   createCard,
   deleteCardById,
   updateCard,
+  getSceneCards,
   addCardToScene
 };
