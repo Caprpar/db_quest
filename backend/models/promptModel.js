@@ -1,8 +1,8 @@
 const mongoose = require("mongoose");
 
 const PromptSchema = new mongoose.Schema({
-  prompts: {
-    type: Array
+  prompt: {
+    type: String
   }
 });
 

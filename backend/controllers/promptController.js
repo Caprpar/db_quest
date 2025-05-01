@@ -23,6 +23,7 @@ exports.createPrompt = async (req, res) => {
   const { prompt } = req.body;
   try {
     const newPrompt = new PromptModel({ prompt });
+    newPrompt.save();
     res.status(200).json({ newPrompt });
   } catch (err) {
     res.status(500).json({ error: err.message });
@@ -32,7 +33,8 @@ exports.createPrompt = async (req, res) => {
 exports.deletePromptById = async (req, res) => {
   const { id } = req.params;
   try {
-    const deletedPrompt = await PromptModel.deleteOne(id);
+    const deletedPrompt = await PromptModel.deleteOne({ _id: id });
+
     res.status(200).json({ deletedPrompt: deletedPrompt });
   } catch (err) {
     res.status(500).json({ error: err.message });
