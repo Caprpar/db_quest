@@ -9,6 +9,9 @@ app.use(express.urlencoded({ extended: true }));
 app.use(cors());
 app.use(express.static("public"));
 
+const sessionRoutes = require("./routes/sessionRoutes");
+app.use("/api", sessionRoutes);
+
 const userRoutes = require("./routes/userRoutes");
 const cardRoutes = require("./routes/cardRoutes");
 const sceneRoutes = require("./routes/sceneRoutes");
@@ -17,6 +20,12 @@ app.use("/api", cardRoutes);
 app.use("/api", sceneRoutes);
 app.use("/api", tagRoutes);
 app.use(userRoutes);
+
+const promptRoutes = require("./routes/promptRoutes");
+app.use("/api", promptRoutes);
+
+const connectionMongoDB = require("./connectionMongoDB");
+connectionMongoDB();
 
 app.listen(port, () => {
   console.log(`Backend flora app at port: ${port}`);
