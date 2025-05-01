@@ -55,14 +55,31 @@ async function postSession(req, res) {
 
 async function updateSession(req, res) {
   try {
-  } catch (error) {}
+    const { narrative } = req.body;
+    const updatedSession = await sessionService.updateSession(
+      narrative,
+      req.params.id
+    );
+    res.status(200).send(updatedSession);
+  } catch (error) {
+    res.status(500).send(error);
+  }
+}
+
+async function deleteSessionCascade(req, res) {
+  try {
+    const deleteResult = await sessionService.deleteSessionCascade(
+      req.params.id
+    );
+    res.status(200).send(deleteResult);
+  } catch (error) {
+    res.status(500).send(error);
+  }
 }
 
 async function deleteSession(req, res) {
   try {
-    console.log(req.params);
     const deleteResult = await sessionService.deleteSession(req.params.id);
-    console.log(deleteResult);
     res.status(200).send(deleteResult);
   } catch (error) {
     res.status(500).send(error);
@@ -76,5 +93,6 @@ module.exports = {
   getSessionsByUser,
   postSession,
   updateSession,
-  deleteSession
+  deleteSession,
+  deleteSessionCascade
 };
