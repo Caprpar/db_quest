@@ -1,4 +1,4 @@
-const sessionService = require("../services/sessionServices");
+const sessionService = require("../services/sessionService");
 
 async function getAllSessions(req, res) {
   try {
