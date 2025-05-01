@@ -34,14 +34,24 @@ exports.getCardById = async (req, res) => {
 
 exports.createCard = async (req, res) => {
   try {
-    const { cardType, cardName, cardScore, cardDescription } = req.body;
+    const { cardType, cardName, cardScore, cardDescription, sceneId } =
+      req.body;
+    // Ta emot en nuvarande scene ID (kolla att det finns) inserta detta kort med nuvarande scene
     const createdCard = await cardService.createCard(
       cardType,
       cardName,
       cardScore,
       cardDescription
     );
-    res.status(200).json({ message: "Card created" });
+    console.log(createdCard.insertId);
+    if (sceneId) {
+      const addCardToScene = await cardService.addCardToScene(
+        createdCard.insertId,
+        sceneId
+      );
+      console.log(`card: ${createdCard.insertId} added to scene: ${sceneId} `);
+    }
+    res.status(200).json({ message: createdCard });
   } catch (err) {
     res.status(500).json({ error: err.message });
   }
