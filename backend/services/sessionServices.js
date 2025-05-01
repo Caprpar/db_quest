@@ -60,10 +60,27 @@ function postSession(prompt, narrative, userid) {
   });
 }
 
-function updateSession() {
+function updateSession(narr, id) {
   return new Promise((resolve, reject) => {
-    let sql = "";
-    let params = [];
+    let sql = `UPDATE session
+    Set session.narrative = ? WHERE session.id = ?`;
+    let params = [narr, id];
+    connectionMySQL.query(sql, params, (err, result) => {
+      if (err) reject(err);
+      else resolve(result);
+    });
+  });
+}
+
+function deleteSessionCascade(id) {
+  return new Promise((resolve, reject) => {
+    let sql = `DELETE session, card
+    FROM session
+    JOIN scene ON scene.sessionId = session.id
+    JOIN sceneCard ON sceneCard.sceneId = scene.id
+    JOIN card ON card.id = sceneCard.cardId
+    WHERE session.id = ?`;
+    let params = [id];
     connectionMySQL.query(sql, params, (err, result) => {
       if (err) reject(err);
       else resolve(result);
@@ -73,7 +90,7 @@ function updateSession() {
 
 function deleteSession(id) {
   return new Promise((resolve, reject) => {
-    let sql = ``;
+    let sql = `DELETE FROM session WHERE session.id = ?`;
     let params = [id];
     connectionMySQL.query(sql, params, (err, result) => {
       if (err) reject(err);
@@ -89,5 +106,6 @@ module.exports = {
   getSessionsByTag,
   postSession,
   updateSession,
-  deleteSession
+  deleteSession,
+  deleteSessionCascade
 };
