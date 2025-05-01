@@ -19,7 +19,7 @@ const tagRoutes = require("./routes/tagRoutes");
 app.use("/api", cardRoutes);
 app.use("/api", sceneRoutes);
 app.use("/api", tagRoutes);
-app.use(userRoutes);
+app.use("/api", userRoutes);
 
 const promptRoutes = require("./routes/promptRoutes");
 app.use("/api", promptRoutes);

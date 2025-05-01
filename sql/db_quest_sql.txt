@@ -11,13 +11,13 @@ CREATE TABLE session (
 	prompt    text NOT NULL,
 	narrative text NOT NULL,
 	userId    int  NOT NULL,
-	FOREIGN KEY (userId) REFERENCES user (id)
+	FOREIGN KEY (userId) REFERENCES user (id) ON DELETE CASCADE
 );
 
 CREATE TABLE scene(
 	id int not null PRIMARY KEY AUTO_INCREMENT,
 	sessionId int not null,
-	FOREIGN KEY (sessionId) REFERENCES session(id)
+	FOREIGN KEY (sessionId) REFERENCES session(id) ON DELETE CASCADE
 );
 
 CREATE TABLE card (
@@ -31,19 +31,20 @@ CREATE TABLE card (
 CREATE TABLE sceneCard(
 	sceneId int not null,
 	cardId int not null,
-	FOREIGN KEY (cardId) REFERENCES card(id),
-	FOREIGN KEY (sceneId) REFERENCES scene(id)
+	FOREIGN KEY (cardId) REFERENCES card(id) ON DELETE CASCADE,
+	FOREIGN KEY (sceneId) REFERENCES scene(id) ON DELETE CASCADE
 );
 
 CREATE TABLE tag (
-	id      int NOT NULL AUTO_INCREMENT PRIMARY KEY,
+	id      int         NOT NULL PRIMARY KEY AUTO_INCREMENT,
 	tagName varchar(50) NOT NULL
 );
 
 CREATE TABLE sessionTag(
-	id int not null PRIMARY KEY AUTO_INCREMENT,
+	sessionId int not null,
 	tagId int not null,
-	FOREIGN KEY (tagId) REFERENCES tag(id)
+	FOREIGN KEY (tagId) REFERENCES tag(id) ON DELETE CASCADE,
+	FOREIGN KEY (sessionId) REFERENCES session(id) ON DELETE CASCADE
 );
 
 /*
