@@ -2,7 +2,6 @@ const connectionMySQL = require("../connectionMySQL");
 
 /*
 todo 
-function getTags () {}
 
 function getTagById () {}
 
@@ -20,6 +19,18 @@ function getTags() {
   });
 }
 
+function getTagById(id) {
+  return new Promise((resolve, reject) => {
+    let sql = "SELECT * FROM tag WHERE id = ?";
+    const params = [id];
+    connectionMySQL.query(sql, params, (err, results) => {
+      if (err) reject(err);
+      else resolve(results[0]);
+    });
+  });
+}
+
 module.exports = {
-  getTags
+  getTags,
+  getTagById
 };

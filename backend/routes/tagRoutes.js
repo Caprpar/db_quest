@@ -3,6 +3,7 @@ const router = express.Router();
 const tagController = require("../controllers/tagController");
 
 router.get("/tags", tagController.getTags);
+router.get("/tags/:id", tagController.getTagById);
 /* router.get("/scenes/:id", sceneController.getSceneById);
 router.post("/scenes", sceneController.createScene); */
 
