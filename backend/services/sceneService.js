@@ -1,45 +1,42 @@
-const connectionMySQL = require ("../connectionMySQL");
-
+const connectionMySQL = require("../connectionMySQL");
 
 function getScenes() {
-    return new Promise((resolve, reject) => {
-        let sql = "SELECT * FROM scene";
-        connectionMySQL.query(sql, (err, result) => {
-            if (err) reject(err);
-            else resolve(result);
-        })
-    })
+  return new Promise((resolve, reject) => {
+    let sql = "SELECT * FROM scene";
+    connectionMySQL.query(sql, (err, result) => {
+      if (err) reject(err);
+      else resolve(result);
+    });
+  });
 }
 
 function getSceneById(id) {
-    return new Promise((resolve, reject) => {
-        let sql = "SELECT * FROM scene WHERE id = ?";
-        const params = [id];
-        connectionMySQL.query(sql,params, (err, results) => {
-            if (err) reject(err);
-            else resolve(results[0]);
-        });
+  return new Promise((resolve, reject) => {
+    let sql = "SELECT * FROM scene WHERE id = ?";
+    const params = [id];
+    connectionMySQL.query(sql, params, (err, results) => {
+      if (err) reject(err);
+      else resolve(results[0]);
     });
+  });
 }
 
-function createScene (sessionId) {
-    return new Promise((resolve, reject) => {
-        let sql = `
+function createScene(sessionId) {
+  return new Promise((resolve, reject) => {
+    let sql = `
         INSERT INTO scene(sessionId)
         VALUE (?)
         `;
-        const params = [sessionId];
-        connectionMySQL.query(sql, params, (err, results) => {
-            if (err) reject (err);
-            else resolve(results); 
-        });
+    const params = [sessionId];
+    connectionMySQL.query(sql, params, (err, results) => {
+      if (err) reject(err);
+      else resolve(results);
     });
+  });
 }
 
 module.exports = {
-    getScenes,
-    getSceneById,
-    createScene
+  getScenes,
+  getSceneById,
+  createScene
 };
-
-
