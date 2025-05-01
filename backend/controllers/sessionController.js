@@ -53,6 +53,16 @@ async function postSession(req, res) {
   }
 }
 
+async function addTagToSession(req, res) {
+  try {
+    const { sessionId, tagId } = req.body;
+    const result = await sessionService.addTagToSession(sessionId, tagId);
+    res.status(200).send("tag added to session");
+  } catch (err) {
+    res.status(400).send("adding tag failed");
+  }
+}
+
 async function updateSession(req, res) {
   try {
     const { narrative } = req.body;
@@ -92,6 +102,7 @@ module.exports = {
   getSessionsByTag,
   getSessionsByUser,
   postSession,
+  addTagToSession,
   updateSession,
   deleteSession,
   deleteSessionCascade
