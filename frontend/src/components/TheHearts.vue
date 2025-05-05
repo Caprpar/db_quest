@@ -14,16 +14,20 @@
 
   function getHearts(hp) {
     let hearts = [];
-    for (let index = 0; index < hp.value.max; index++) {
+    for (let index = 1; index <= hp.value.max; index++) {
       hearts.push({ id: index, src: empty });
     }
     return hearts;
   }
 
-  function updateHearts(click) {
+  function updateHearts(hover) {
     for (const heart of hearts.value) {
-      if (heart.id <= click.id) {
+      if (hover.id > hp.value.current) {
+        heart.src = faded;
+      } else if (heart.id <= hover.id) {
         heart.src = full;
+      } else if (hover.id <= hp.value.current && heart.id <= hp.value.current) {
+        heart.src = faded;
       } else {
         heart.src = empty;
       }
@@ -37,6 +41,7 @@
         heart.src = full;
       }
     }
+    resetHearts();
   }
 
   function resetHearts() {
@@ -61,6 +66,7 @@
       :src="heart.src"
       alt=""
     />
+    <p>{{ hp.current }}</p>
   </div>
 </template>
 
@@ -68,11 +74,20 @@
   img {
     margin: 0;
     padding: 0;
+    width: 1em;
+    height: auto;
   }
   #hearts {
-    border: solid;
+    display: flex;
+    align-items: center;
+    font-size: 2em;
+    /* border: solid; */
     margin: 0;
     padding: 0;
     width: fit-content;
+  }
+  p {
+    margin: 0;
+    padding: 0 0 0 0.5em;
   }
 </style>
