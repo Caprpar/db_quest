@@ -1,9 +1,5 @@
 <script setup>
   import { RouterLink } from "vue-router";
-
-  function startNewSession() {
-    // ask user for prompt
-  }
 </script>
 
 <template>
