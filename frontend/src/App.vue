@@ -1,14 +1,11 @@
 <script setup>
   import { RouterLink, RouterView } from "vue-router";
   import HelloWorld from "./components/HelloWorld.vue";
-  import HeartsView from "./views/HeartsView.vue";
 </script>
 
 <template>
   <header>
-    <div class="wrapper">
-      <HeartsView />
-    </div>
+    <div class="wrapper" />
   </header>
 
   <RouterView />
