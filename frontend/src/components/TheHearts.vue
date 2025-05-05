@@ -4,70 +4,73 @@
   import faded from "@/assets/fadedHeart.svg";
   import empty from "@/assets/emptyHeart.svg";
   const hp = ref();
+  const hearts = ref([]);
   hp.value = {
-    max: 20,
-    current: 14
+    current: 14,
+    max: 20
   };
-  let hearts = ref();
-  hearts.value = setHearts(hp.value.current, hp.value.max);
-  let eventStatus = ref();
 
-  function setHearts(hp, amount = 20, hoverId) {
-    const hearts = [];
-    for (let index = 1; index <= amount; index++) {
-      if (index <= hp) {
-        hearts.push({ id: index, src: full });
-      } else {
-        hearts.push({ id: index, src: empty });
-      }
+  hearts.value = getHearts(hp);
+
+  function getHearts(hp) {
+    let hearts = [];
+    for (let index = 0; index < hp.value.max; index++) {
+      hearts.push({ id: index, src: empty });
     }
     return hearts;
   }
 
-  function confirmHeart(heart) {
-    eventStatus.value = `Du klicka på hjärta nr: ${heart.id}`;
-    hp.value.current = heart.id;
-    hearts.value = setHearts(hp.value.current);
-  }
-
-  function previewHeart(currentHeart) {
-    eventStatus.value = `Du hoverar på hjärta nr: ${heart.id}`;
-    for (const heart of hearts) {
-      if (heart.id < currentHeart.id) {
-        heart.src = faded;
+  function updateHearts(click) {
+    for (const heart of hearts.value) {
+      if (heart.id <= click.id) {
+        heart.src = full;
+      } else {
+        heart.src = empty;
       }
     }
   }
 
-  function resetHeart(heart) {
-    hearts.value = setHearts(hp.value.current, hp.value.max);
+  function drawHearts(click) {
+    hp.value.current = click.id;
+    for (const heart of hearts.value) {
+      if (heart.id <= click.id) {
+        heart.src = full;
+      }
+    }
   }
-  // Funktion to preview choice
-  // Funktion to confirm choice
+
+  function resetHearts() {
+    for (const heart of hearts.value) {
+      if (heart.id <= hp.value.current) {
+        heart.src = full;
+      } else {
+        heart.src = empty;
+      }
+    }
+  }
 </script>
 
 <template>
   <h1>HP: {{ hp.current }}</h1>
-  <p>{{ eventStatus }}</p>
-  <div id="hearts" @mouseleave="resetHeart">
+  <div id="hearts" @mouseleave="resetHearts">
     <img
       v-for="heart in hearts"
+      @mouseover="updateHearts(heart)"
+      @click="drawHearts(heart)"
       :key="heart.id"
       :src="heart.src"
-      @click="confirmHeart(heart)"
-      @mouseover="previewHeart(heart)"
-      alt="heart"
+      alt=""
     />
   </div>
 </template>
 
 <style scoped>
-  /*  */
   img {
     margin: 0;
     padding: 0;
   }
   #hearts {
+    border: solid;
     margin: 0;
     padding: 0;
     width: fit-content;
