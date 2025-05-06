@@ -1,5 +1,5 @@
 import { createRouter, createWebHistory } from "vue-router";
-import HeartsView from "@/views/HeartsView.vue";
+import CaspDev from "@/views/CaspDev.vue";
 import HomeView from "../views/HomeView.vue";
 import NewSessionView from "@/views/NewSessionView.vue";
 import BrowserView from "@/views/BrowserView.vue";
@@ -13,9 +13,9 @@ const router = createRouter({
       component: HomeView
     },
     {
-      path: "/hearts",
+      path: "/caspar",
       name: "hearts",
-      component: HeartsView
+      component: CaspDev
     },
     {
       path: "/about",
