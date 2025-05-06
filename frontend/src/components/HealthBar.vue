@@ -66,7 +66,7 @@
     hpDiff.value = getDiff(hover.id, hp.value.current);
   }
 
-  // confirms hearts new value
+  // confirms hearts new value and emits it to parent
   function updateHearts(click) {
     hp.value.current = click.id;
     for (const heart of hearts.value) {
@@ -75,6 +75,7 @@
       }
     }
     resetHearts();
+    // send current hp to parent
     emit("update-health", hp.value.current);
     return hp.value.current;
   }
