@@ -11,4 +11,31 @@
   </nav>
 </template>
 
-<style scoped></style>
+<style scoped>
+  nav {
+    width: 100%;
+    /* font-size: 12px; */
+    text-align: center;
+    margin-top: 0.5rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid black;
+  }
+
+  nav a.router-link-exact-active {
+    color: red;
+  }
+
+  nav a.router-link-exact-active:hover {
+    background-color: transparent;
+  }
+
+  nav a {
+    display: inline-block;
+    padding: 0 1rem;
+    border-left: 1px solid green;
+  }
+
+  nav a:first-of-type {
+    border: 0;
+  }
+</style>
