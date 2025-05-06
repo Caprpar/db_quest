@@ -25,7 +25,7 @@
 <template>
   <form action="" id="card">
     <div id="score">{{ cardScore }}</div>
-    <img src="https://placehold.co/350x310" alt="" />
+    <img src="" :alt="cardType" />
     <input type="text" v-model="name" placeholder="Name" />
     <textarea type="textarea" v-model="description" placeholder="Description" />
     <input
@@ -82,5 +82,17 @@
     width: 50px;
     height: 50px;
     /* left: 100%; */
+  }
+  img {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 350px;
+    height: 310px;
+    background-color: #ddd;
+    color: #999;
+    font-size: 4em;
+    font-family:
+      "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande", "Lucida Sans", Arial, sans-serif;
   }
 </style>
