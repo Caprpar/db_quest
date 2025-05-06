@@ -1,14 +1,22 @@
 <script setup>
-  import { ref } from "vue";
+  import { ref, defineProps } from "vue";
   import full from "@/assets/heart.svg";
   import faded from "@/assets/fadedHeart.svg";
   import empty from "@/assets/emptyHeart.svg";
   const hp = ref();
   const hpDiff = ref(0);
   const hearts = ref([]);
+
+  const props = defineProps({
+    healthPoints: {
+      default: 20,
+      type: Number
+    }
+  });
+
   hp.value = {
-    current: 14,
-    max: 20
+    current: props.healthPoints,
+    max: props.healthPoints
   };
 
   hearts.value = initHeartArray(hp);

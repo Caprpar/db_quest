@@ -1,9 +1,9 @@
 <script setup>
-  import TheHearts from "@/components/TheHearts.vue";
+  import HealthBar from "@/components/HealthBar.vue";
 </script>
 
 <template>
-  <TheHearts />
+  <HealthBar health-points="20" />
 </template>
 
 <style></style>
