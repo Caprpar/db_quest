@@ -13,7 +13,7 @@
 </script>
 
 <template>
-  <HealthBar :="{ hp }" @update-health="updateHealth" />
+  <HealthBar :health-points="hp" @update-health="updateHealth" />
 </template>
 
 <style></style>
