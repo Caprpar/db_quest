@@ -13,11 +13,7 @@
 </script>
 
 <template>
-<<<<<<< HEAD
   <HealthBar :health-points="hp" @update-health="updateHealth" />
-=======
-  <HealthBar :="{ hp }" @update-health="updateHealth" />
->>>>>>> 45d1d91 (add emits to retrive health points)
 </template>
 
 <style></style>
