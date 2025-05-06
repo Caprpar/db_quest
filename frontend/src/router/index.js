@@ -3,14 +3,16 @@ import CaspDev from "@/views/CaspDev.vue";
 import HomeView from "../views/HomeView.vue";
 import NewSessionView from "@/views/NewSessionView.vue";
 import BrowserView from "@/views/BrowserView.vue";
+// import HomeView from '../views/HomeView.vue'
+import AuthView from '../views/AuthView.vue' // din Auth-sida
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
     {
-      path: "/",
-      name: "home",
-      component: HomeView
+      path: '/',
+      name: 'Auth', // vi bytte namn från 'home' till 'Auth' här
+      component: AuthView, // Auth-komponenten
     },
     {
       path: "/caspar",
