@@ -1,5 +1,5 @@
 <script setup>
-  import { ref, defineProps } from "vue";
+  import { ref, defineProps, defineEmits, onMounted } from "vue";
   import full from "@/assets/heart.svg";
   import faded from "@/assets/fadedHeart.svg";
   import empty from "@/assets/emptyHeart.svg";
@@ -7,11 +7,17 @@
   const hpDiff = ref(0);
   const hearts = ref([]);
 
+  const emit = defineEmits("update-health");
+
   const props = defineProps({
     healthPoints: {
       default: 20,
       type: Number
     }
+  });
+
+  onMounted(() => {
+    resetHearts();
   });
 
   hp.value = {
@@ -69,6 +75,8 @@
       }
     }
     resetHearts();
+    emit("update-health", hp.value.current);
+    return hp.value.current;
   }
 
   // When player leaves heart area, reset hearts to correct current hp-level
