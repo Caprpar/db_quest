@@ -1,9 +1,9 @@
 <script setup>
-  import CardComponent from "@/components/CardComponent.vue";
+  import CardInput from "@/components/CardInput.vue";
 </script>
 
 <template>
-  <CardComponent />
+  <CardInput />
 </template>
 
 <style></style>
