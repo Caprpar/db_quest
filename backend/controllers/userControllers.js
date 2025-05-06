@@ -20,11 +20,43 @@ const getUserById = async (req, res) => {
 };
 
 const createUser = async (req, res) => {
+  
+  // try {
+  //   const newUser = await userService.createUser(req.body.name);
+  //   res.status(201).json(newUser);
+  // } catch (err) {
+  //   res.status(500).json({ error: err.message });
+  // }
+  const { name, type } = req.body;
+
+  if (!name || !type) {
+    return res.status(400).json({ message: "Namn och typ krävs" });
+  }
+
   try {
-    const newUser = await userService.createUser(req.body.name);
-    res.status(201).json(newUser);
+    if (type === "register") {
+      const existingUser = await userService.findUserByName(name);
+      if (existingUser) {
+        return res.status(409).json({ message: "Namnet är redan registrerat" });
+      }
+
+      const newUser = await userService.createUser(name);
+      return res.status(201).json({ message: "Konto skapat", user: newUser });
+    }
+
+    if (type === "login") {
+      const existingUser = await userService.findUserByName(name);
+      if (!existingUser) {
+        return res.status(404).json({ message: "Användaren finns inte" });
+      }
+
+      return res.status(200).json({ message: "Inloggad", user: existingUser });
+    }
+
+    res.status(400).json({ message: "Ogiltig typ" });
   } catch (err) {
-    res.status(500).json({ error: err.message });
+    res.status(500).json({ message: "Serverfel", error: err.message });
+    console.error('CREATE USER ERROR:', err);
   }
 };
 

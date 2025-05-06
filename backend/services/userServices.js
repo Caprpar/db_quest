@@ -26,10 +26,17 @@ const deleteUser = async (id) => {
   return result.affectedRows > 0;
 };
 
+const findUserByName = async (name) => {
+  const [rows] = await db.promise().query('SELECT * FROM user WHERE name = ?', [name]);
+  return rows[0]; 
+};
+
+
 module.exports = {
   getAllUsers,
   getUserById,
   createUser,
   updateUser,
   deleteUser,
+  findUserByName
 };
