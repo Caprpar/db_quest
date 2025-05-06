@@ -46,7 +46,7 @@ async function postSession(req, res) {
       sessionNarrative,
       sessionUserId
     );
-    res.status(200).send("session Created");
+    res.status(200).send(result);
   } catch (err) {
     console.log(err);
     res.status(400).send("oop oop");
