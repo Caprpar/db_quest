@@ -75,10 +75,7 @@
       }
     }
     resetHearts();
-<<<<<<< HEAD
     // send current hp to parent
-=======
->>>>>>> 45d1d91 (add emits to retrive health points)
     emit("update-health", hp.value.current);
     return hp.value.current;
   }
