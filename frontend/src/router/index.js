@@ -1,6 +1,10 @@
 import { createRouter, createWebHistory } from "vue-router";
+import CaspDev from "@/views/CaspDev.vue";
 import HomeView from "../views/HomeView.vue";
-import HeartsView from "@/views/HeartsView.vue";
+import NewSessionView from "@/views/NewSessionView.vue";
+import BrowserView from "@/views/BrowserView.vue";
+// import HomeView from '../views/HomeView.vue'
+import AuthView from "../views/AuthView.vue"; // din Auth-sida
 import CardView from "@/views/CardView.vue";
 
 const router = createRouter({
@@ -8,13 +12,13 @@ const router = createRouter({
   routes: [
     {
       path: "/",
-      name: "home",
-      component: HomeView
+      name: "Auth", // vi bytte namn från 'home' till 'Auth' här
+      component: AuthView // Auth-komponenten
     },
     {
-      path: "/hearts",
+      path: "/caspar",
       name: "hearts",
-      component: HeartsView
+      component: CaspDev
     },
     {
       path: "/about",
@@ -23,6 +27,16 @@ const router = createRouter({
       // this generates a separate chunk (About.[hash].js) for this route
       // which is lazy-loaded when the route is visited.
       component: () => import("../views/AboutView.vue")
+    },
+    {
+      path: "/new",
+      name: "newstory",
+      component: NewSessionView
+    },
+    {
+      path: "/browser",
+      name: "browser",
+      component: BrowserView
     },
     {
       path: "/cards",
