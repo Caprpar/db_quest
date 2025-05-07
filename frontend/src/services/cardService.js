@@ -37,7 +37,7 @@ export async function getCards() {
  * @param {cardObject} card - {cardType, cardName, cardScore, cardDescription, sceneId (not mandatory)}
  * @returns new card object
  */
-export async function createCard(card) {
+export async function postCard(card) {
   try {
     const response = await api.post(`/cards`, card);
     return response.data;
@@ -52,7 +52,7 @@ export async function createCard(card) {
  * @param {cardObject} newValues - apply keys with updated values
  * @returns
  */
-export async function updateCard(id, newValues) {
+export async function patchCard(id, newValues) {
   try {
     const response = await api.patch(`/cards/${id}`, newValues);
     return response.data;

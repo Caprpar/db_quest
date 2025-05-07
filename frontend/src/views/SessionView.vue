@@ -3,16 +3,23 @@
   import {
     getCardById,
     getCards,
-    createCard,
-    updateCard,
+    postCard,
+    patchCard,
     deleteCardById
   } from "@/services/cardService";
+
+  import { createCard, createDeck, shuffleDeck, drawFromDeck } from "@utils/deckUtils";
 
   import HealthBar from "@/components/HealthBar.vue";
   import FaceCard from "@/components/FaceCard.vue";
   const emit = defineEmits(["update-health"]);
   const hp = ref(0);
+  const scenes = [];
+  const currentScene = ref([]);
+  let deck = shuffleDeck(createDeck());
   hp.value = 20;
+
+  // Mata in 4 random kort i en scen
 
   function updateHealth(health) {
     // emit("update-health", health);
