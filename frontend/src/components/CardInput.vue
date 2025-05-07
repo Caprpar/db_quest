@@ -1,13 +1,15 @@
 <script setup>
-  import { ref } from "vue";
+  import { ref, defineEmits } from "vue";
 
-  const cardValueInput = ref(1);
-  const cardTypeInput = ref("Challenge");
+  const cardValueInput = ref(null);
+  const cardTypeInput = ref(null);
+  const emit = defineEmits(["card-selected"]);
 
   const selectCard = (value, type) => {
-    cardValueInput.value = value;
-    cardTypeInput.value = type;
-    console.log(cardTypeInput.value, cardValueInput.value);
+    const cardType = { type };
+    const cardScore = { value };
+    emit("card-selected", { cardType, cardScore });
+    console.log(cardType, cardScore);
   };
 </script>
 
