@@ -7,10 +7,11 @@ CREATE TABLE user (
 );
 
 CREATE TABLE session (
-	id        int  NOT NULL PRIMARY KEY AUTO_INCREMENT,
-	prompt    text NOT NULL,
-	narrative text NOT NULL,
-	userId    int  NOT NULL,
+	id        int          NOT NULL PRIMARY KEY AUTO_INCREMENT,
+	title     varchar(250) NOT NULL,
+	prompt    text         NOT NULL,
+	narrative text         NOT NULL,
+	userId    int          NOT NULL,
 	FOREIGN KEY (userId) REFERENCES user (id) ON DELETE CASCADE
 );
 
@@ -51,9 +52,9 @@ INSERT INTO user(name)
 VALUES ("Caspar"),
 			 ("Morin");
 
-INSERT INTO session(prompt, narrative, userId)
-VALUES ("Du är ute i en öknen och allt du ser är en död dromedar 25 meter bort", "", 1),
-			 ("Det är storm ute på havs, regnkläderna är så gott som meningslösa. Du hör en plötslig smäll..", "", 2);
+INSERT INTO session(prompt, title, narrative, userId)
+VALUES ("Du är ute i en öknen och allt du ser är en död dromedar 25 meter bort","En ökenresa", "", 1),
+			 ("Det är storm ute på havs, regnkläderna är så gott som meningslösa. Du hör en plötslig smäll..","Kapten haddoks havsdagbok", "", 2);
 
 INSERT INTO scene(sessionId)
 VALUES (1),

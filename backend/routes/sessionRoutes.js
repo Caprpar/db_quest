@@ -20,7 +20,7 @@ router.post("/sessions", sessionController.postSession);
 router.post("/session/addtagtosession", sessionController.addTagToSession);
 
 // UPDATE session in database
-router.put("/sessions/:id", sessionController.updateSession);
+router.patch("/sessions/:id", sessionController.updateSession);
 
 // DELETE session in database
 router.delete("/sessions/:id", sessionController.deleteSession);

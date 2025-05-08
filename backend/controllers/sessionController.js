@@ -40,8 +40,10 @@ async function getSessionsByTag(req, res) {
 
 async function postSession(req, res) {
   try {
-    const { sessionPrompt, sessionNarrative, sessionUserId } = req.body;
+    const { sessionTitle, sessionPrompt, sessionNarrative, sessionUserId } =
+      req.body;
     const result = await sessionService.postSession(
+      sessionTitle,
       sessionPrompt,
       sessionNarrative,
       sessionUserId
@@ -65,9 +67,9 @@ async function addTagToSession(req, res) {
 
 async function updateSession(req, res) {
   try {
-    const { narrative } = req.body;
+    // const { narrative } = req.body;
     const updatedSession = await sessionService.updateSession(
-      narrative,
+      req.body,
       req.params.id
     );
     res.status(200).send(updatedSession);
