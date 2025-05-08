@@ -15,7 +15,7 @@ exports.getCards = async (req, res) => {
       return res.json({ sceneCards });
     }
     const cards = await cardService.getCards();
-    res.status(200).json({ cards });
+    res.status(200).json(cards);
   } catch (err) {
     res.status(500).json({ error: err.message });
   }

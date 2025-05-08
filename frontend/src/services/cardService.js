@@ -5,7 +5,11 @@ const api = axios.create({
   timout: 5000
 });
 
-// get card
+/**
+ * Get card by id
+ * @param {cardId} id
+ * @returns Card object
+ */
 export async function getCardById(id) {
   try {
     const response = await api.get(`/cards/${id}`);
@@ -15,7 +19,10 @@ export async function getCardById(id) {
   }
 }
 
-// get cards
+/**
+ * Get all cards from API
+ * @returns array of all card objects
+ */
 export async function getCards() {
   try {
     const response = await api.get(`/cards`);
@@ -25,9 +32,12 @@ export async function getCards() {
   }
 }
 
-// post card
-export async function createCard(card) {
-  //  card has to be an object containing {cardType, cardName, cardScore, cardDescription, sceneId (ej obligatorisk)}
+/**
+ * Create new card
+ * @param {cardObject} card - {cardType, cardName, cardScore, cardDescription, sceneId (not mandatory)}
+ * @returns new card object
+ */
+export async function postCard(card) {
   try {
     const response = await api.post(`/cards`, card);
     return response.data;
@@ -36,9 +46,13 @@ export async function createCard(card) {
   }
 }
 
-// patch card
-export async function updateCard(id, newValues) {
-  //  newValues is an object containg updated value from following {cardType, cardName, cardScore, cardDescription}
+/**
+ *
+ * @param {cardId} id
+ * @param {cardObject} newValues - apply keys with updated values
+ * @returns
+ */
+export async function patchCard(id, newValues) {
   try {
     const response = await api.patch(`/cards/${id}`, newValues);
     return response.data;
@@ -47,7 +61,11 @@ export async function updateCard(id, newValues) {
   }
 }
 
-// delete card
+/**
+ *
+ * @param {cardId} id
+ * @returns deleted cardObject
+ */
 export async function deleteCardById(id) {
   try {
     const response = await api.delete(`/cards/${id}`);

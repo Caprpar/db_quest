@@ -1,16 +1,16 @@
 <template>
-    <div id="app">
-      <router-view />
-    </div>
-  </template>
-  
-  <script>
+  <div id="app">
+    <router-view />
+  </div>
+</template>
+
+<script>
   export default {
-    name: 'App',
-  }
-  </script>
-  
-  <style>
+    name: "App"
+  };
+</script>
+
+<style scoped>
   body {
     margin: 0;
     font-family: Arial, sans-serif;
@@ -19,5 +19,4 @@
   #app {
     padding: 2rem;
   }
-  </style>
-  
+</style>
