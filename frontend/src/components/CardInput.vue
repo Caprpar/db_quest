@@ -28,7 +28,7 @@
           :key="n"
           :id="`val-${n}`"
           type="radio"
-          :checked="cardValueInput === n && cardTypeInput === 'Aid'"
+          name="problems"
           @click="() => selectCard(n, 'Problem')"
         /> </label
     ></span>
@@ -42,7 +42,7 @@
           :key="n"
           :id="`val-${n}`"
           type="radio"
-          :checked="cardValueInput === n && cardTypeInput === 'Aid'"
+          name="aids"
           @click="() => selectCard(n, 'Aid')"
         />
       </label>
@@ -57,7 +57,7 @@
           :key="n"
           :id="`val-${n}`"
           type="radio"
-          :checked="cardValueInput === n && cardTypeInput === 'Aid'"
+          name="solutions"
           @click="() => selectCard(n, 'Solution')"
         />
       </label>

@@ -2,6 +2,7 @@
   import HealthBar from "@/components/HealthBar.vue";
   import FaceCard from "@/components/FaceCard.vue";
   import CardInput from "@/components/CardInput.vue";
+  import NarrativeText from "@/components/NarrativeText.vue";
   import { ref, defineEmits } from "vue";
   import {
     getCardById,
@@ -30,6 +31,10 @@
   function getLoreContent(name, description) {
     console.log(name, description);
   }
+
+  function postNarrative(narrative) {
+    console.log(narrative);
+  }
 </script>
 
 <template>
@@ -42,7 +47,9 @@
         <CardInput />
         <CardInput />
       </section>
-      <section id="narrative"></section>
+      <section id="narrative">
+        <NarrativeText @narration-to-session="" />
+      </section>
       <!-- <HealthBar :health-points="hp" @update-health="updateHealth" /> -->
 
       <!-- <FaceCard :card-type="'Problem'" card-score="9" @lore-content="getLoreContent" />

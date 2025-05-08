@@ -6,6 +6,7 @@ import BrowserView from "@/views/BrowserView.vue";
 // import HomeView from '../views/HomeView.vue'
 import AuthView from "../views/AuthView.vue"; // din Auth-sida
 import CardView from "@/views/CardView.vue";
+import NarrativeText from "@/components/NarrativeText.vue";
 import SessionView from "@/views/SessionView.vue";
 
 const router = createRouter({
@@ -48,6 +49,11 @@ const router = createRouter({
       path: "/cards",
       name: "cards",
       component: CardView
+    },
+    {
+      path: "/narrative",
+      name: "narrative",
+      component: NarrativeText
     }
   ]
 });
