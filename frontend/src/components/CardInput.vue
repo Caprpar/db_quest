@@ -1,19 +1,25 @@
 <script setup>
-  import { ref, defineEmits } from "vue";
+  import { ref, defineEmits, defineProps } from "vue";
 
   const cardValueInput = ref(null);
   const cardTypeInput = ref(null);
   const emit = defineEmits(["card-selected"]);
+  const prop = defineProps({
+    cardSlot: {
+      type: Number,
+      default: null
+    }
+  });
 
-  const selectCard = (score, type) => {
+  const selectCard = (score, type, cardSlot) => {
     // const cardType = { type };
     // const cardScore = { value };
     const card = {
       type,
-      score
+      score,
+      cardSlot
     };
     emit("card-selected", card);
-    console.log(card);
   };
 </script>
 
@@ -28,8 +34,8 @@
           :key="n"
           :id="`val-${n}`"
           type="radio"
-          name="problems"
-          @click="() => selectCard(n, 'Problem')"
+          :name="`problems-slot-${prop.cardSlot}`"
+          @click="() => selectCard(n, 'Problem', prop.cardSlot)"
         /> </label
     ></span>
 
@@ -42,8 +48,8 @@
           :key="n"
           :id="`val-${n}`"
           type="radio"
-          name="aids"
-          @click="() => selectCard(n, 'Aid')"
+          :name="`aids-slot-${prop.cardSlot}`"
+          @click="() => selectCard(n, 'Aid', prop.cardSlot)"
         />
       </label>
     </span>
@@ -57,8 +63,8 @@
           :key="n"
           :id="`val-${n}`"
           type="radio"
-          name="solutions"
-          @click="() => selectCard(n, 'Solution')"
+          :name="`solutions-slot-${prop.cardSlot}`"
+          @click="() => selectCard(n, 'Solution', prop.cardSlot)"
         />
       </label>
     </span>
