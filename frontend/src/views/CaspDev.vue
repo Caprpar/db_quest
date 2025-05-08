@@ -20,9 +20,9 @@
 <template>
   <main>
     <!-- <HealthBar :health-points="hp" @update-health="updateHealth" /> -->
-    <FaceCard :card-type="'Problem'" card-score="9" @lore-content="getLoreContent" />
-    <FaceCard :card-type="'Solution'" card-score="3" @lore-content="getLoreContent" />
-    <FaceCard :card-type="'Aid'" card-score="5" @lore-content="getLoreContent" />
+    <FaceCard card-type="Problem" card-score="9" @lore-content="getLoreContent" />
+    <FaceCard card-type="Solution" card-score="3" @lore-content="getLoreContent" />
+    <FaceCard card-type="Aid" card-score="5" @lore-content="getLoreContent" />
   </main>
 </template>
 
