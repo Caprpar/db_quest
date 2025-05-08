@@ -95,6 +95,7 @@
 
 <template>
   <div id="hearts" @mouseleave="resetHearts">
+    <p></p>
     <img
       v-for="heart in hearts"
       @mouseover="previewHearts(heart)"
@@ -126,5 +127,6 @@
   p {
     margin: 0;
     padding: 0 0 0 0.5em;
+    width: 0.5em;
   }
 </style>

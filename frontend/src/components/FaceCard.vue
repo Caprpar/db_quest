@@ -35,8 +35,6 @@
       @click.prevent="getLoreContent(name, description)"
     />
   </form>
-  {{ name }}
-  {{ description }}
 </template>
 
 <style scoped>
