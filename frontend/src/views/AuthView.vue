@@ -10,10 +10,11 @@ import { useRouter } from 'vue-router'
 
 const router = useRouter()
 
-const handleSuccess = (name) => {
-  localStorage.setItem('username', name)
-  router.push('/about') //Tillfällig
+const handleSuccess = (user) => {
+  localStorage.setItem('user', JSON.stringify(user))
+  router.push('/about') // tillfällig redirect
 }
+
 </script>
 
 
