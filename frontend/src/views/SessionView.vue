@@ -67,6 +67,6 @@
   }
   #cards {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
   }
 </style>
