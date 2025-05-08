@@ -2,8 +2,8 @@
 USE db_quest;
 
 CREATE TABLE user (
-	id   int NOT NULL AUTO_INCREMENT PRIMARY KEY,
-	name varchar(50)
+	id   int         NOT NULL AUTO_INCREMENT PRIMARY KEY,
+	name varchar(50) NOT NULL UNIQUE
 );
 
 CREATE TABLE session (
@@ -14,10 +14,10 @@ CREATE TABLE session (
 	FOREIGN KEY (userId) REFERENCES user (id) ON DELETE CASCADE
 );
 
-CREATE TABLE scene(
-	id int not null PRIMARY KEY AUTO_INCREMENT,
-	sessionId int not null,
-	FOREIGN KEY (sessionId) REFERENCES session(id) ON DELETE CASCADE
+CREATE TABLE scene (
+	id        int NOT NULL PRIMARY KEY AUTO_INCREMENT,
+	sessionId int NOT NULL,
+	FOREIGN KEY (sessionId) REFERENCES session (id) ON DELETE CASCADE
 );
 
 CREATE TABLE card (
@@ -28,11 +28,11 @@ CREATE TABLE card (
 	cardDescription TEXT
 );
 
-CREATE TABLE sceneCard(
-	sceneId int not null,
-	cardId int not null,
-	FOREIGN KEY (cardId) REFERENCES card(id) ON DELETE CASCADE,
-	FOREIGN KEY (sceneId) REFERENCES scene(id) ON DELETE CASCADE
+CREATE TABLE sceneCard (
+	sceneId int NOT NULL,
+	cardId  int NOT NULL,
+	FOREIGN KEY (cardId) REFERENCES card (id) ON DELETE CASCADE,
+	FOREIGN KEY (sceneId) REFERENCES scene (id) ON DELETE CASCADE
 );
 
 CREATE TABLE tag (
@@ -40,12 +40,49 @@ CREATE TABLE tag (
 	tagName varchar(50) NOT NULL
 );
 
-CREATE TABLE sessionTag(
-	sessionId int not null,
-	tagId int not null,
-	FOREIGN KEY (tagId) REFERENCES tag(id) ON DELETE CASCADE,
-	FOREIGN KEY (sessionId) REFERENCES session(id) ON DELETE CASCADE
+CREATE TABLE sessionTag (
+	sessionId int NOT NULL,
+	tagId     int NOT NULL,
+	FOREIGN KEY (tagId) REFERENCES tag (id) ON DELETE CASCADE,
+	FOREIGN KEY (sessionId) REFERENCES session (id) ON DELETE CASCADE
 );
+
+INSERT INTO user(name)
+VALUES ("Caspar"),
+			 ("Morin");
+
+INSERT INTO session(prompt, narrative, userId)
+VALUES ("Du är ute i en öknen och allt du ser är en död dromedar 25 meter bort", "", 1),
+			 ("Det är storm ute på havs, regnkläderna är så gott som meningslösa. Du hör en plötslig smäll..", "", 2);
+
+INSERT INTO scene(sessionId)
+VALUES (1),
+			 (2);
+
+INSERT INTO card(cardType, cardName, cardScore, cardDescription)
+VALUES ("problem", "Våg", 6, "En kraftig våg närmar sig skutan."),
+			 ("aid", "Badring", 3, "Denna kom in händigt, frågan är om det räcker.."),
+			 ("solution", "Våtdräkt", 9, "Skönt håller mig åtminstone torr!"),
+			 ("problem", "Ank svärm", 13, "Yttrar sig på långt håll, hinner jag hitta en lösning?")
+
+INSERT INTO sceneCard(sceneId, cardId)
+VALUES (2, 1),
+			 (2, 2),
+			 (2, 3),
+			 (2, 4);
+
+INSERT INTO tag(tagName)
+VALUES ("Ocean"),
+			 ("Desert");
+
+INSERT INTO sessionTag(sessionId, tagId)
+VALUES (1, 2),
+			 (2, 1);
+
+
+SELECT *
+FROM card
+WHERE id = 1;
 
 /*
 drop table sessionTag
