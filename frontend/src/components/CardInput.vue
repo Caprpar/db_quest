@@ -19,7 +19,7 @@
 
 <template>
   <main>
-    <h1>Challenge</h1>
+    <h1>Problem</h1>
 
     <span>
       <label v-for="n in 13" :key="n"
@@ -29,7 +29,7 @@
           :id="`val-${n}`"
           type="radio"
           :checked="cardValueInput === n && cardTypeInput === 'Aid'"
-          @click="() => selectCard(n, 'Aid')"
+          @click="() => selectCard(n, 'Problem')"
         /> </label
     ></span>
 
@@ -48,7 +48,7 @@
       </label>
     </span>
 
-    <h1>Asset</h1>
+    <h1>Solution</h1>
 
     <span>
       <label v-for="n in 10" :key="n"
@@ -58,7 +58,7 @@
           :id="`val-${n}`"
           type="radio"
           :checked="cardValueInput === n && cardTypeInput === 'Aid'"
-          @click="() => selectCard(n, 'Aid')"
+          @click="() => selectCard(n, 'Solution')"
         />
       </label>
     </span>
