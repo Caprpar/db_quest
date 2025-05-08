@@ -13,12 +13,20 @@
       return data;
     });
   });
+
+  async function startSearch() {
+    sessions.value = await fetch("http://localhost:3000/api/sessions").then((res) => {
+      let data = res.json();
+      return data;
+    });
+    console.log("hmmm");
+  }
 </script>
 
 <template>
   <div id="searchbar">
     <input type="text" name="search" id="search" placeholder="search: " v-model="search" />
-    <p>{{ search }}</p>
+    <button @click="startSearch">Search</button>
   </div>
   <div id="browser">
     <BrowserCard v-for="session in sessions" :session="session" :key="session" />
