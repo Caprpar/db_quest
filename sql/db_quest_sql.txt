@@ -8,6 +8,7 @@ CREATE TABLE user (
 
 CREATE TABLE session (
 	id        int  NOT NULL PRIMARY KEY AUTO_INCREMENT,
+	title varchar(250) NOT NULL,
 	prompt    text NOT NULL,
 	narrative text NOT NULL,
 	userId    int  NOT NULL,
