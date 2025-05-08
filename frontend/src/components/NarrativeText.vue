@@ -1,16 +1,25 @@
 <script setup>
   import { ref, defineEmits } from "vue";
 
-  const narrative = ref(" ");
+  const narration = ref(" ");
+  const emit = defineEmits(["narration-to-session"]);
 
-  const sendNarrative = () => {
-    console.log(narrative.value);
+  const sendNarrative = (narration) => {
+    console.log(narration);
+
+    const writtenNarrative = {
+      narration
+    };
+
+    emit("narration-to-session", writtenNarrative);
+    console.log(writtenNarrative);
   };
 </script>
 
 <template>
-  <textarea v-model="narrative" placeholder="Write your story here..."></textarea>
-  <button @click="sendNarrative">Save</button>
+  <h1>Your Story</h1>
+  <textarea v-model="narration" placeholder="Write your story" rows="30" cols="100"></textarea>
+  <button @click="() => sendNarrative(narration)">Save</button>
 </template>
 
 <style scoped></style>
