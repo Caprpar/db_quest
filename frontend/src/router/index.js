@@ -6,13 +6,15 @@ import BrowserView from "@/views/BrowserView.vue";
 // import HomeView from '../views/HomeView.vue'
 import AuthView from '../views/AuthView.vue' // din Auth-sida
 
+import ProfileView from "@/views/ProfileView.vue";
+
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
     {
       path: '/',
-      name: 'Auth', // vi bytte namn från 'home' till 'Auth' här
-      component: AuthView, // Auth-komponenten
+      name: 'Auth', 
+      component: AuthView, 
     },
     {
       path: "/caspar",
@@ -36,7 +38,13 @@ const router = createRouter({
       path: "/browser",
       name: "browser",
       component: BrowserView
+    },
+    {
+      path: '/profile',
+      name: 'Profil',
+      component: ProfileView
     }
+    
   ]
 });
 
