@@ -48,11 +48,11 @@ function getSessionsByUser(userid) {
   });
 }
 
-function postSession(prompt, narrative, userid) {
+function postSession(title, prompt, narrative, userid) {
   return new Promise((resolve, reject) => {
     let sql =
-      "INSERT INTO session (prompt, narrative, userid) VALUES (?, ?, ?)";
-    let params = [prompt, narrative, userid];
+      "INSERT INTO session (title, prompt, narrative, userid) VALUES (?, ?, ?, ?)";
+    let params = [title, prompt, narrative, userid];
     connectionMySQL.query(sql, params, (err, result) => {
       if (err) reject(err);
       else resolve(result);
@@ -73,11 +73,25 @@ function addTagToSession(sessionId, tagId) {
   });
 }
 
-function updateSession(narr, id) {
+function updateSession(body, id) {
   return new Promise((resolve, reject) => {
-    let sql = `UPDATE session
-    Set session.narrative = ? WHERE session.id = ?`;
-    let params = [narr, id];
+    let sql = `UPDATE session Set `;
+
+    let length = Object.entries(body).length;
+    let curLength = 1;
+    for (let [key, value] of Object.entries(body)) {
+      console.log(key, value);
+      sql += `session.${key} = '${value}'`;
+      if (curLength < length) {
+        sql += `, `;
+      } else {
+        sql += ` `;
+      }
+      curLength += 1;
+    }
+
+    sql += `WHERE session.id = ?`;
+    let params = [Number(id)];
     connectionMySQL.query(sql, params, (err, result) => {
       if (err) reject(err);
       else resolve(result);
