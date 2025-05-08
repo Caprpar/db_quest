@@ -42,3 +42,12 @@ values (1, 1),
        (1, 2),
        (1, 3),
        (1, 4);
+
+-- Ta fram en session scen som visar vem sommspelar, narrativet, prompten och korten som spelats
+SELECT scene.id as scen, user.name, session.narrative, session.prompt, card.cardName, card.cardType, card.cardScore
+FROM session
+			 JOIN scene ON session.id = scene.sessionId
+			 JOIN user ON session.userId = user.id
+			 JOIN sceneCard ON scene.id = sceneCard.sceneId
+			 JOIN card ON sceneCard.cardId = card.id
+WHERE sceneId = 2;
