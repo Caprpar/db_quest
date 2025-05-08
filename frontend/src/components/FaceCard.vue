@@ -40,10 +40,12 @@
 <style scoped>
   #card {
     position: relative;
-    width: 350px;
+    width: 19em;
     border: solid #8a8a8a;
     display: flex;
     flex-direction: column;
+    border-radius: 1em;
+    min-height: 25em;
   }
   input[type="text"],
   textarea {
@@ -75,18 +77,19 @@
     top: 233px;
     right: 23px;
     background-color: white;
-    border: dashed #3f3f3f;
+    border: dashed #918989;
     border-radius: 50%;
     width: 50px;
     height: 50px;
     /* left: 100%; */
   }
   img {
+    border-radius: 50%;
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 350px;
-    height: 310px;
+    width: 100%;
+    height: 296px;
     background-color: #ddd;
     color: #999;
     font-size: 4em;
