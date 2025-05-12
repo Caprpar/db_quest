@@ -14,6 +14,9 @@ router.get("/sessions/user/:id", sessionController.getSessionsByUser);
 // GET sessions by tag
 router.get("/sessions/tags", sessionController.getSessionsByTag);
 
+// GET sessions that are finished
+router.get("/sessions/finished", sessionController.getFinishedSession);
+
 // POST session to database
 router.post("/sessions", sessionController.postSession);
 
