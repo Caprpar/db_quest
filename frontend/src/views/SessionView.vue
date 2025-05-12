@@ -44,25 +44,17 @@
     currentCard.cardDescription = cardDescription;
   }
 
-  function resetCard(card) {
-    console.log(card);
-    Object.keys(card).forEach((key) => {
-      card[key] = null;
-    });
-    console.log(card);
-    // return card
-  }
-
   function postNarrative(narrative) {
     console.log(narrative);
   }
 
+  /**
+   * Add card to card slot when cardType and cardScore are selected
+   * @param card cardObject
+   */
   function returnSelectedCard(card) {
     card.selected = false;
-    console.log(card);
-    let values = {};
     cards.value[card.cardSlot] = card;
-    console.log(cards);
   }
 
   /**
@@ -74,8 +66,9 @@
       if (card.selected) {
         card.sceneId = Number(sessionStorage.getItem("currentSceneId"));
         postCard({ ...card });
-        resetCard(card);
         console.log(card);
+        // Removes card that been saved to database
+        delete cards.value[card.cardSlot];
       }
     }
     newScene(Number(sessionStorage.getItem("sessionId")));
