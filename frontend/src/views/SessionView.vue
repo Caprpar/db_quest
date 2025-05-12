@@ -29,13 +29,28 @@
     console.log(hp.value);
   }
 
+  /**
+   * Recives lore content from card when resolved
+   * @param cardName
+   * @param cardDescription
+   * @param cardSlot
+   */
   function getLoreContent(cardName, cardDescription, cardSlot) {
     // console.log(name, description, cardSlot);
     let currentCard = cards.value[cardSlot];
+    // Toggle selection
     currentCard.selected = !currentCard.selected;
     currentCard.cardName = cardName;
     currentCard.cardDescription = cardDescription;
-    console.log(currentCard);
+  }
+
+  function resetCard(card) {
+    console.log(card);
+    Object.keys(card).forEach((key) => {
+      card[key] = null;
+    });
+    console.log(card);
+    // return card
   }
 
   function postNarrative(narrative) {
@@ -49,11 +64,18 @@
     cards.value[card.cardSlot] = card;
     console.log(cards);
   }
-  function sceneAction() {
+
+  /**
+   * add all selected cards to database and link them to
+   * current scene, then creates a new scene
+   */
+  function newSceneAction() {
     for (const [cardNr, card] of Object.entries(cards.value)) {
       if (card.selected) {
         card.sceneId = Number(sessionStorage.getItem("currentSceneId"));
         postCard({ ...card });
+        resetCard(card);
+        console.log(card);
       }
     }
     newScene(Number(sessionStorage.getItem("sessionId")));
@@ -72,6 +94,7 @@
             :card-score="cards[index].cardScore"
             :card-slot="cards[index].cardSlot"
             @lore-content="getLoreContent"
+            :class="cards[index].selected ? 'selected' : 'not-selected'"
           />
           <CardInput v-else :card-slot="index" @card-selected="returnSelectedCard" />
         </template>
@@ -82,7 +105,7 @@
         </div>
         <NarrativeText @narration-to-session="postNarrative" />
       </section>
-      <button @click="sceneAction">Ny scene</button>
+      <button @click="newSceneAction">Ny scene</button>
     </div>
   </main>
 </template>

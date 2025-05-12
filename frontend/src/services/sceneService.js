@@ -4,14 +4,11 @@ const api = axios.create({
   baseURL: "http://localhost:3000/api/",
   timout: 5000
 });
-
-// Posta kort med sceneId x3
-// skapa ny scene spara i sessionstorage
-
-// getScenes
-// getSceneById
-// createScene
-
+/**
+ *
+ * @param {number} sessionId
+ * @returns created scene information
+ */
 export async function newScene(sessionId) {
   try {
     const response = await api.post(`/scenes`, { sessionId });
@@ -23,51 +20,14 @@ export async function newScene(sessionId) {
   }
 }
 
+/**
+ *
+ * @param {number} id
+ * @returns scene
+ */
 export async function getSceneById(id) {
   try {
     const response = await api.get(`/scenes/${id}`);
-    return response.data;
-  } catch (err) {
-    console.log("Fel: ", err);
-  }
-}
-
-/**
- * Get all cards from API
- * @returns array of all card objects
- */
-export async function getCards() {
-  try {
-    const response = await api.get(`/cards`);
-    return response.data;
-  } catch (err) {
-    console.log("Fel: ", err);
-  }
-}
-
-/**
- *
- * @param {cardId} id
- * @param {cardObject} newValues - apply keys with updated values
- * @returns
- */
-export async function patchCard(id, newValues) {
-  try {
-    const response = await api.patch(`/cards/${id}`, newValues);
-    return response.data;
-  } catch (err) {
-    console.log("Fel: ", err);
-  }
-}
-
-/**
- *
- * @param {cardId} id
- * @returns deleted cardObject
- */
-export async function deleteCardById(id) {
-  try {
-    const response = await api.delete(`/cards/${id}`);
     return response.data;
   } catch (err) {
     console.log("Fel: ", err);
