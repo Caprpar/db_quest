@@ -2,6 +2,7 @@ const sessionService = require("../services/sessionService");
 
 async function getAllSessions(req, res) {
   try {
+    console.log("test");
     const sessions = await sessionService.getAllSessions();
     res.status(200).send(sessions);
   } catch (error) {
