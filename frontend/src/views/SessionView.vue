@@ -37,6 +37,7 @@
   }
 
   function returnSelectedCard(card) {
+    card.selected = false;
     console.log(card);
     let values = {};
     cards.value[card.cardSlot] = card;
