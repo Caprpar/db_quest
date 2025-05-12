@@ -2,6 +2,7 @@ const sessionService = require("../services/sessionService");
 
 async function getAllSessions(req, res) {
   try {
+    console.log("test");
     const sessions = await sessionService.getAllSessions();
     res.status(200).send(sessions);
   } catch (error) {
@@ -31,7 +32,21 @@ async function getSessionsByUser(req, res) {
 async function getSessionsByTag(req, res) {
   try {
     const { tags } = req.body;
+    console.log(req.body);
+    console.log(tags);
+    console.log("test");
     const sessions = await sessionService.getSessionsByTag(tags);
+    console.log(sessions);
+    res.status(200).send("hihi");
+  } catch (error) {
+    res.status(500).send(error);
+  }
+}
+
+async function getFinishedSession(req, res) {
+  try {
+    console.log("test");
+    const sessions = await sessionService.getFinishedSession();
     res.status(200).send(sessions);
   } catch (error) {
     res.status(500).send(error);
@@ -107,5 +122,6 @@ module.exports = {
   addTagToSession,
   updateSession,
   deleteSession,
-  deleteSessionCascade
+  deleteSessionCascade,
+  getFinishedSession
 };
