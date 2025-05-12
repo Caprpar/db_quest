@@ -12,6 +12,7 @@
     deleteCardById
   } from "@/services/cardService";
 
+  import { newScene } from "@/services/sceneService";
   const emit = defineEmits(["update-health"]);
   const hp = ref(0);
   const scenes = [];
@@ -28,19 +29,49 @@
     console.log(hp.value);
   }
 
-  function getLoreContent(name, description) {
-    console.log(name, description);
+  /**
+   * Recives lore content from card when resolved
+   * @param cardName
+   * @param cardDescription
+   * @param cardSlot
+   */
+  function getLoreContent(cardName, cardDescription, cardSlot) {
+    // console.log(name, description, cardSlot);
+    let currentCard = cards.value[cardSlot];
+    // Toggle selection
+    currentCard.selected = !currentCard.selected;
+    currentCard.cardName = cardName;
+    currentCard.cardDescription = cardDescription;
   }
 
   function postNarrative(narrative) {
     console.log(narrative);
   }
 
+  /**
+   * Add card to card slot when cardType and cardScore are selected
+   * @param card cardObject
+   */
   function returnSelectedCard(card) {
-    console.log(card);
-    let values = {};
+    card.selected = false;
     cards.value[card.cardSlot] = card;
-    console.log(cards);
+  }
+
+  /**
+   * add all selected cards to database and link them to
+   * current scene, then creates a new scene
+   */
+  function newSceneAction() {
+    for (const [cardNr, card] of Object.entries(cards.value)) {
+      if (card.selected) {
+        card.sceneId = Number(sessionStorage.getItem("currentSceneId"));
+        postCard({ ...card });
+        console.log(card);
+        // Removes card that been saved to database
+        delete cards.value[card.cardSlot];
+      }
+    }
+    newScene(Number(sessionStorage.getItem("sessionId")));
   }
 </script>
 
@@ -52,9 +83,11 @@
         <template v-for="index in 4" :key="index">
           <FaceCard
             v-if="index in cards"
-            :card-type="cards[index].type"
-            :card-score="cards[index].score"
+            :card-type="cards[index].cardType"
+            :card-score="cards[index].cardScore"
+            :card-slot="cards[index].cardSlot"
             @lore-content="getLoreContent"
+            :class="cards[index].selected ? 'selected' : 'not-selected'"
           />
           <CardInput v-else :card-slot="index" @card-selected="returnSelectedCard" />
         </template>
@@ -65,6 +98,7 @@
         </div>
         <NarrativeText @narration-to-session="postNarrative" />
       </section>
+      <button @click="newSceneAction">Ny scene</button>
     </div>
   </main>
 </template>

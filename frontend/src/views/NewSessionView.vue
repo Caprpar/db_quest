@@ -36,8 +36,7 @@
       })
     })
       .then((res) => res.json())
-      .then((data) => data);
-
+      .then((data) => console.log(data));
     // have to fix this later, shouldnt be a hardcoded id
     sessionStorage.setItem("sessionId", data.insertId);
   }
