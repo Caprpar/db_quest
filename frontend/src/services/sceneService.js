@@ -17,7 +17,6 @@ export async function newScene(sessionId) {
     const response = await api.post(`/scenes`, { sessionId });
     const currentScene = await getSceneById(response.data.insertId);
     sessionStorage.setItem("currentSceneId", currentScene.id);
-    console.log(currentScene.scene.id);
     return response.data;
   } catch (err) {
     console.log("Fel: ", err);

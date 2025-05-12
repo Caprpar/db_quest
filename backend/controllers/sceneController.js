@@ -19,7 +19,7 @@ exports.getSceneById = async (req, res) => {
     if (!id) {
       return res.status(404).json({ message: "Scene not found" });
     }
-    res.status(200).json({ scene });
+    res.status(200).json(scene);
   } catch (err) {
     res.status(500).json({ error: err.message });
   }

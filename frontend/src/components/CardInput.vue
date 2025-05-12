@@ -11,12 +11,12 @@
     }
   });
 
-  const selectCard = (score, type, cardSlot) => {
+  const selectCard = (cardScore, cardType, cardSlot) => {
     // const cardType = { type };
     // const cardScore = { value };
     const card = {
-      type,
-      score,
+      cardScore,
+      cardType,
       cardSlot
     };
     emit("card-selected", card);
@@ -79,7 +79,7 @@
     box-shadow: 1px 0 5px rgb(104, 104, 104, 0.5);
     width: 19em;
     border-radius: 1em;
-    min-height: 25em;
+    mine-height: 25em;
   }
   span {
     display: flex;

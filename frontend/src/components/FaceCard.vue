@@ -9,14 +9,18 @@
     cardScore: {
       type: Number,
       default: null
+    },
+    cardSlot: {
+      type: Number,
+      default: null
     }
   });
 
   const name = ref("");
   const description = ref("");
 
-  function getLoreContent(name, description) {
-    emit("lore-content", name, description);
+  function getLoreContent(name, description, cardSlot) {
+    emit("lore-content", name, description, cardSlot);
   }
 
   console.log(props.cardType, props.cardScore);
@@ -31,8 +35,8 @@
     <input
       type="submit"
       value="Resolve"
-      @submit.prevent="getLoreContent(name, description)"
-      @click.prevent="getLoreContent(name, description)"
+      @submit.prevent="getLoreContent(name, description, cardSlot)"
+      @click.prevent="getLoreContent(name, description, cardSlot)"
     />
   </form>
 </template>

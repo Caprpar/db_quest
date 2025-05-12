@@ -29,8 +29,13 @@
     console.log(hp.value);
   }
 
-  function getLoreContent(name, description) {
-    console.log(name, description);
+  function getLoreContent(cardName, cardDescription, cardSlot) {
+    // console.log(name, description, cardSlot);
+    let currentCard = cards.value[cardSlot];
+    currentCard.selected = !currentCard.selected;
+    currentCard.cardName = cardName;
+    currentCard.cardDescription = cardDescription;
+    console.log(currentCard);
   }
 
   function postNarrative(narrative) {
@@ -45,11 +50,10 @@
     console.log(cards);
   }
   function sceneAction() {
-    let savedCards = [];
     for (const [cardNr, card] of Object.entries(cards.value)) {
       if (card.selected) {
         card.sceneId = Number(sessionStorage.getItem("currentSceneId"));
-        postCard(card);
+        postCard({ ...card });
       }
     }
     newScene(Number(sessionStorage.getItem("sessionId")));
@@ -64,8 +68,9 @@
         <template v-for="index in 4" :key="index">
           <FaceCard
             v-if="index in cards"
-            :card-type="cards[index].type"
-            :card-score="cards[index].score"
+            :card-type="cards[index].cardType"
+            :card-score="cards[index].cardScore"
+            :card-slot="cards[index].cardSlot"
             @lore-content="getLoreContent"
           />
           <CardInput v-else :card-slot="index" @card-selected="returnSelectedCard" />
