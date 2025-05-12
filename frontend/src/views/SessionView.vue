@@ -12,6 +12,7 @@
     deleteCardById
   } from "@/services/cardService";
 
+  import { newScene } from "@/services/sceneService";
   const emit = defineEmits(["update-health"]);
   const hp = ref(0);
   const scenes = [];
@@ -43,6 +44,16 @@
     cards.value[card.cardSlot] = card;
     console.log(cards);
   }
+  function sceneAction() {
+    let savedCards = [];
+    for (const [cardNr, card] of Object.entries(cards.value)) {
+      if (card.selected) {
+        card.sceneId = Number(sessionStorage.getItem("currentSceneId"));
+        postCard(card);
+      }
+    }
+    newScene(Number(sessionStorage.getItem("sessionId")));
+  }
 </script>
 
 <template>
@@ -66,6 +77,7 @@
         </div>
         <NarrativeText @narration-to-session="postNarrative" />
       </section>
+      <button @click="sceneAction">Ny scene</button>
     </div>
   </main>
 </template>

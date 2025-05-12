@@ -28,8 +28,8 @@ exports.getSceneById = async (req, res) => {
 exports.createScene = async (req, res) => {
   try {
     const { sessionId } = req.body;
-    const createScene = await sceneService.createScene(sessionId);
-    res.status(200).json({ message: "Scene created" });
+    const createdScene = await sceneService.createScene(sessionId);
+    res.status(200).json(createdScene);
   } catch (err) {
     res.status(500).json({ error: err.message });
   }
