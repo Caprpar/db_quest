@@ -34,7 +34,7 @@
         sessionTitle: "",
         sessionPrompt: test.value,
         sessionNarrative: "",
-        sessionUserId: 1
+        sessionUserId: sessionStorage.getItem("userId")
       })
     })
       .then((res) => res.json())
@@ -59,7 +59,7 @@
       </select>
       <input type="text" v-model="test" />
     </div>
-    <button @click="startStory">Start</button>
+    <button @click="startStory">Start Adventure</button>
   </div>
 </template>
 
