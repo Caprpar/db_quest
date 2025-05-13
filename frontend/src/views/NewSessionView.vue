@@ -42,6 +42,26 @@
         console.log(data);
         return data;
       });
+    console.log("||||||");
+    console.log(prompts.value);
+    console.log(prompts);
+    console.log(test.value);
+    const filtered = prompts.value.map((item) => {
+      return item.prompt;
+    });
+    if (!filtered.includes(test.value)) {
+      const response = await fetch("http://localhost:3000/api/prompts", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({ prompt: test.value })
+      }).then((res) => {
+        console.log(res);
+        return res;
+      });
+    }
+
     // have to fix this later, shouldnt be a hardcoded id
     sessionStorage.setItem("sessionId", data.insertId);
     router.push("/adventure");
