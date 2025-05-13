@@ -29,7 +29,7 @@ function getSessionsByTag(tags) {
       ((session 
       INNER JOIN sessionTag on session.id = sessionTag.sessionId) 
       INNER JOIN tag ON sessionTag.tagId = tag.id) 
-      WHERE tag.id LIKE "%${tags[0]}"`;
+      WHERE tag.tagName LIKE "%${tags[0]}"`;
     let params = tags;
     connectionMySQL.query(sql, (err, result) => {
       if (err) reject(err);
@@ -40,7 +40,7 @@ function getSessionsByTag(tags) {
 
 function getFinishedSession() {
   return new Promise((resolve, reject) => {
-    let sql = `SELECT * FROM session WHERE CHAR_LENGTH(narrative) > 0`;
+    let sql = `SELECT * FROM session WHERE CHAR_LENGTH(title) > 0`;
     connectionMySQL.query(sql, (err, result) => {
       if (err) reject(err);
       else resolve(result);
