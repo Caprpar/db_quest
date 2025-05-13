@@ -112,10 +112,9 @@ const isNextSceneEnabled = computed(() => {
         </div>
         <NarrativeText @narration-to-session="postNarrative" />
       </section>
-      <button @click="newSceneAction">Ny scene</button>
     </div>
     <div style="margin-top: 1em">
-      <button :disabled="!isNextSceneEnabled" @click="nextScene">Next scene</button>
+      <button :disabled="!isNextSceneEnabled" @click="newSceneAction">Next scene</button>
     </div>
   </main>
 </template>
