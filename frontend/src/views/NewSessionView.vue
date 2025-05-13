@@ -38,7 +38,10 @@
       })
     })
       .then((res) => res.json())
-      .then((data) => console.log(data));
+      .then((data) => {
+        console.log(data);
+        return data;
+      });
     // have to fix this later, shouldnt be a hardcoded id
     sessionStorage.setItem("sessionId", data.insertId);
     router.push("/adventure");
