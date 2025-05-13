@@ -66,7 +66,7 @@ async function postSession(req, res) {
     res.status(200).send(result);
   } catch (err) {
     console.log(err);
-    res.status(400).send("oop oop");
+    res.status(400).send(err);
   }
 }
 

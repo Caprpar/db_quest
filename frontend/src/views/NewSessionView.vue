@@ -1,4 +1,5 @@
 <script setup>
+  import router from "@/router";
   import { onMounted, ref } from "vue";
 
   const test = ref("");
@@ -30,6 +31,7 @@
         "Content-Type": "application/json"
       },
       body: JSON.stringify({
+        sessionTitle: "",
         sessionPrompt: test.value,
         sessionNarrative: "",
         sessionUserId: 1
@@ -39,6 +41,7 @@
       .then((data) => console.log(data));
     // have to fix this later, shouldnt be a hardcoded id
     sessionStorage.setItem("sessionId", data.insertId);
+    router.push("/adventure");
   }
 </script>
 
