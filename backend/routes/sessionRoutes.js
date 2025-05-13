@@ -5,14 +5,17 @@ const sessionController = require("../controllers/sessionController");
 //GET ALL sessions
 router.get("/sessions", sessionController.getAllSessions);
 
+// GET sessions by tag
+router.get("/sessions/tags", sessionController.getSessionsByTag);
+
+// GET sessions that are finished
+router.get("/sessions/finished", sessionController.getFinishedSession);
+
 // GET sessions by id
 router.get("/sessions/:id", sessionController.getSessionsById);
 
 // GET sessions for user
 router.get("/sessions/user/:id", sessionController.getSessionsByUser);
-
-// GET sessions by tag
-router.get("/sessions/tags", sessionController.getSessionsByTag);
 
 // POST session to database
 router.post("/sessions", sessionController.postSession);

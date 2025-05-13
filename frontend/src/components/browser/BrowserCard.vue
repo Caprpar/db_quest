@@ -1,13 +1,18 @@
 <script setup>
+  import router from "@/router";
   import { defineProps } from "vue";
 
   const props = defineProps({ session: Object });
+
+  function startReading(id) {
+    router.push(`/read/${id}`);
+  }
 </script>
 
 <template>
   <div>
-    <h2>story title</h2>
-    <button>test</button>
+    <h2>{{ props.session.title }}</h2>
+    <button @click="startReading(props.session.id)">read</button>
   </div>
 </template>
 

@@ -24,13 +24,24 @@ function getSessionsById(id) {
 
 function getSessionsByTag(tags) {
   return new Promise((resolve, reject) => {
+    console.log(tags);
     let sql = `SELECT * FROM 
       ((session 
       INNER JOIN sessionTag on session.id = sessionTag.sessionId) 
       INNER JOIN tag ON sessionTag.tagId = tag.id) 
-      WHERE tag.id IN (?)`;
+      WHERE tag.tagName LIKE "%${tags[0]}"`;
     let params = tags;
-    connectionMySQL.query(sql, params, (err, result) => {
+    connectionMySQL.query(sql, (err, result) => {
+      if (err) reject(err);
+      else resolve(result);
+    });
+  });
+}
+
+function getFinishedSession() {
+  return new Promise((resolve, reject) => {
+    let sql = `SELECT * FROM session WHERE CHAR_LENGTH(title) > 0`;
+    connectionMySQL.query(sql, (err, result) => {
       if (err) reject(err);
       else resolve(result);
     });
@@ -135,5 +146,6 @@ module.exports = {
   addTagToSession,
   updateSession,
   deleteSession,
-  deleteSessionCascade
+  deleteSessionCascade,
+  getFinishedSession
 };

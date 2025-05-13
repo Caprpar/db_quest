@@ -1,4 +1,5 @@
 <script setup>
+  import router from "@/router";
   import { onMounted, ref } from "vue";
 
   const test = ref("");
@@ -30,16 +31,20 @@
         "Content-Type": "application/json"
       },
       body: JSON.stringify({
+        sessionTitle: "",
         sessionPrompt: test.value,
         sessionNarrative: "",
-        sessionUserId: 1
+        sessionUserId: sessionStorage.getItem("userId")
       })
     })
       .then((res) => res.json())
-      .then((data) => data);
-
+      .then((data) => {
+        console.log(data);
+        return data;
+      });
     // have to fix this later, shouldnt be a hardcoded id
     sessionStorage.setItem("sessionId", data.insertId);
+    router.push("/adventure");
   }
 </script>
 
@@ -54,7 +59,7 @@
       </select>
       <input type="text" v-model="test" />
     </div>
-    <button @click="startStory">Start</button>
+    <button @click="startStory">Start Adventure</button>
   </div>
 </template>
 

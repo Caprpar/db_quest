@@ -2,6 +2,7 @@ const sessionService = require("../services/sessionService");
 
 async function getAllSessions(req, res) {
   try {
+    console.log("test");
     const sessions = await sessionService.getAllSessions();
     res.status(200).send(sessions);
   } catch (error) {
@@ -11,6 +12,7 @@ async function getAllSessions(req, res) {
 
 async function getSessionsById(req, res) {
   try {
+    console.log(req.params.id);
     const id = req.params.id;
     const sessions = await sessionService.getSessionsById(id);
     res.status(200).send(sessions);
@@ -31,7 +33,21 @@ async function getSessionsByUser(req, res) {
 async function getSessionsByTag(req, res) {
   try {
     const { tags } = req.body;
+    console.log(req.body);
+    console.log(tags);
+    console.log("test");
     const sessions = await sessionService.getSessionsByTag(tags);
+    console.log(sessions);
+    res.status(200).send(sessions);
+  } catch (error) {
+    res.status(500).send(error);
+  }
+}
+
+async function getFinishedSession(req, res) {
+  try {
+    console.log("test");
+    const sessions = await sessionService.getFinishedSession();
     res.status(200).send(sessions);
   } catch (error) {
     res.status(500).send(error);
@@ -51,7 +67,7 @@ async function postSession(req, res) {
     res.status(200).send(result);
   } catch (err) {
     console.log(err);
-    res.status(400).send("oop oop");
+    res.status(400).send(err);
   }
 }
 
@@ -107,5 +123,6 @@ module.exports = {
   addTagToSession,
   updateSession,
   deleteSession,
-  deleteSessionCascade
+  deleteSessionCascade,
+  getFinishedSession
 };
