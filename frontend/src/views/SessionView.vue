@@ -93,9 +93,14 @@
     newScene(Number(sessionStorage.getItem("sessionId")));
   }
 
-  const isNextSceneEnabled = computed(() => {
-    return Object.keys(cards.value).length === 3;
-  });
+ function countSelectedCards() {
+  return Object.values(cards.value).filter(card => card.selected).length;
+}
+
+const isNextSceneEnabled = computed(() => {
+  return countSelectedCards() === 3;
+});
+
 
   function nextScene() {
     console.log("Next scene triggered!");
