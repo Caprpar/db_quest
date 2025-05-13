@@ -1,5 +1,6 @@
 <script setup>
   import axios from "axios";
+  import router from "@/router";
   import HealthBar from "@/components/HealthBar.vue";
   import FaceCard from "@/components/FaceCard.vue";
   import CardInput from "@/components/CardInput.vue";
@@ -57,17 +58,13 @@
 
     try {
       const res = await axios.patch(`http://localhost:3000/api/sessions/${sessionId}`, {
-        sessionNarrative: narrative
+        narrative: narrative
       });
       console.log("Patch response:", res.data);
     } catch (err) {
       console.error("Patch failed", err);
     }
-    /*
-    PATCH narration to session-table
-      use web storage to determine which session to store narration
-    send user to Profile Page
-    */
+    router.push("/new");
   }
 
   /**
