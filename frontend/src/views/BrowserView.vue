@@ -6,7 +6,7 @@
   const search = ref();
 
   onMounted(async () => {
-    sessions.value = await fetch("http://localhost:3000/api/sessions").then((res) => {
+    sessions.value = await fetch("http://localhost:3000/api/sessions/finished").then((res) => {
       console.log(res);
       let data = res.json();
       console.log(data);
@@ -15,11 +15,11 @@
   });
 
   async function startSearch() {
-    sessions.value = await fetch("http://localhost:3000/api/sessions").then((res) => {
+    sessions.value = await fetch("http://localhost:3000/api/sessions/finished").then((res) => {
       let data = res.json();
       return data;
     });
-    console.log("hmmm");
+    // console.log("hmmm");
   }
 </script>
 

@@ -7,7 +7,7 @@
 <template>
   <div>
     <h2>{{ props.session.title }}</h2>
-    <button>test</button>
+    <button>read</button>
   </div>
 </template>
 
