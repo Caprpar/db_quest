@@ -12,6 +12,7 @@ async function getAllSessions(req, res) {
 
 async function getSessionsById(req, res) {
   try {
+    console.log(req.params.id);
     const id = req.params.id;
     const sessions = await sessionService.getSessionsById(id);
     res.status(200).send(sessions);
@@ -37,7 +38,7 @@ async function getSessionsByTag(req, res) {
     console.log("test");
     const sessions = await sessionService.getSessionsByTag(tags);
     console.log(sessions);
-    res.status(200).send("hihi");
+    res.status(200).send(sessions);
   } catch (error) {
     res.status(500).send(error);
   }
