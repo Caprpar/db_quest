@@ -57,10 +57,14 @@
       const data = await response.json();
       if (!response.ok) throw new Error(data.message || "Något gick fel.");
 
+
+      localStorage.setItem("user", JSON.stringify(data.user));
+
       error.value = "";
-      props.onSuccess?.(name);
+      props.onSuccess?.(data.user);
       console.log(data.user.id);
       sessionStorage.setItem("userId", data.user.id);
+
     } catch (err) {
       error.value = err.message;
     }

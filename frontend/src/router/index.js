@@ -8,14 +8,17 @@ import AuthView from "../views/AuthView.vue"; // din Auth-sida
 import CardView from "@/views/CardView.vue";
 import NarrativeText from "@/components/NarrativeText.vue";
 import SessionView from "@/views/SessionView.vue";
+import ReadSessionView from "@/views/ReadSessionView.vue";
+
+import ProfileView from "@/views/ProfileView.vue";
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
     {
       path: "/",
-      name: "Auth", // vi bytte namn från 'home' till 'Auth' här
-      component: AuthView // Auth-komponenten
+      name: "Auth",
+      component: AuthView
     },
     {
       path: "/caspar",
@@ -54,6 +57,18 @@ const router = createRouter({
       path: "/narrative",
       name: "narrative",
       component: NarrativeText
+    },
+    {
+
+      path: "/profile",
+      name: "Profil",
+      component: ProfileView
+    },
+    {
+      path: "/read/:id",
+      name: "reader",
+      component: ReadSessionView
+
     }
   ]
 });
