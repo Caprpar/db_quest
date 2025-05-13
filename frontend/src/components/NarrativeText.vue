@@ -8,18 +8,13 @@
   const sendNarrative = (narration) => {
     console.log(narration);
 
-    const writtenNarrative = {
-      narration
-    };
-
-    emit("narration-to-session", writtenNarrative);
-    console.log(writtenNarrative);
+    emit("narration-to-session", narration);
   };
 </script>
 
 <template>
   <textarea v-model="narration" placeholder="Write your story" />
-  <button @click="() => sendNarrative(narration)">Save</button>
+  <button @click="() => sendNarrative(narration)">End Session</button>
 </template>
 
 <style scoped>
