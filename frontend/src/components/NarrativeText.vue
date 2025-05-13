@@ -19,7 +19,7 @@
 
 <template>
   <textarea v-model="narration" placeholder="Write your story" />
-  <button @click="() => sendNarrative(narration)">Save</button>
+  <button @click="() => sendNarrative(narration)">End Session</button>
 </template>
 
 <style scoped>
