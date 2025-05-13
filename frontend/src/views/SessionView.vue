@@ -57,7 +57,12 @@
     currentCard.cardDescription = cardDescription;
   }
 
-  async function postNarrative(titleAndNarration) {
+  function deleteCardSlot(cardSlot) {
+    delete cards.value[cardSlot];
+  }
+
+  async function postNarrative(narrative) {
+
     console.log(narrative);
 
     const sessionId = sessionStorage.getItem("sessionId");
@@ -132,6 +137,7 @@
               :card-score="cards[index].cardScore"
               :card-slot="cards[index].cardSlot"
               @lore-content="getLoreContent"
+              @delete-card="deleteCardSlot"
               :class="cards[index].selected ? 'selected' : 'not-selected'"
             />
             <CardInput v-else :card-slot="index" @card-selected="returnSelectedCard" />
