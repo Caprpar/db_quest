@@ -21,7 +21,7 @@
 <template>
   <input type="text" v-model="narrationTitle" placeholder="Title"></input>
   <textarea v-model="narration" placeholder="Write your story" />
-  <button @click="sendNarrative()">End Session</button>
+  <button :disabled="!narrationTitle" @click="sendNarrative()">End Session</button>
 </template>
 
 <style scoped>
