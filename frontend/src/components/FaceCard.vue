@@ -3,7 +3,7 @@
   // import aidImg from '@/assets/aid.png'
   // import solutionImg from '@/assets/solution.png'
   import { ref, defineProps, defineEmits } from "vue";
-  const emit = defineEmits(["lore-content"]);
+  const emit = defineEmits(["lore-content", "delete-card"]);
   const props = defineProps({
     cardType: {
       type: String,
@@ -33,6 +33,24 @@
   <form action="" id="card" :class="cardType.toLowerCase()">
     <div id="img-container" @click.prevent="getLoreContent(name, description, cardSlot)">
       <div id="score">{{ cardScore }}</div>
+      <svg
+        @click.prevent="
+          () => {
+            emit('delete-card', cardSlot);
+          }
+        "
+        xmlns="http://www.w3.org/2000/svg"
+        width="16"
+        height="16"
+        fill="currentColor"
+        class="bi bi-x"
+        viewBox="0 0 16 16"
+        id="remove-card"
+      >
+        <path
+          d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708"
+        />
+      </svg>
       <img class="card-image" :src="`/public/${cardType.toLowerCase()}.png`" :alt="cardType" />
     </div>
     <input type="text" v-model="name" placeholder="Name" />
@@ -110,6 +128,17 @@
     height: 50px;
     /* left: 100%; */
   }
+  #remove-card {
+    width: 3em;
+    height: auto;
+    cursor: pointer;
+    fill: rgb(219, 57, 29);
+    position: absolute;
+    /* background-color: rgba(255, 0, 0, 0.856); */
+    border-radius: 50%;
+    right: 0.2em;
+    top: 0.2em;
+  }
   #img-container {
     position: relative;
     border-radius: 1em 1em 0 0;
@@ -129,7 +158,7 @@
     background-color: #e0dfa0;
   }
 
-  img {
+  img:not(#remove-card) {
     /* border-radius: 50%; */
     display: flex;
     justify-content: center;

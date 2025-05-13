@@ -57,6 +57,10 @@
     currentCard.cardDescription = cardDescription;
   }
 
+  function deleteCardSlot(cardSlot) {
+    delete cards.value[cardSlot];
+  }
+
   async function postNarrative(narrative) {
     console.log(narrative);
 
@@ -104,14 +108,13 @@
     newScene(Number(sessionStorage.getItem("sessionId")));
   }
 
- function countSelectedCards() {
-  return Object.values(cards.value).filter(card => card.selected).length;
-}
+  function countSelectedCards() {
+    return Object.values(cards.value).filter((card) => card.selected).length;
+  }
 
-const isNextSceneEnabled = computed(() => {
-  return countSelectedCards() === 3;
-});
-
+  const isNextSceneEnabled = computed(() => {
+    return countSelectedCards() === 3;
+  });
 
   function nextScene() {
     console.log("Next scene triggered!");
@@ -132,6 +135,7 @@ const isNextSceneEnabled = computed(() => {
               :card-score="cards[index].cardScore"
               :card-slot="cards[index].cardSlot"
               @lore-content="getLoreContent"
+              @delete-card="deleteCardSlot"
               :class="cards[index].selected ? 'selected' : 'not-selected'"
             />
             <CardInput v-else :card-slot="index" @card-selected="returnSelectedCard" />
