@@ -125,15 +125,17 @@ const isNextSceneEnabled = computed(() => {
       <h1>{{ prompt }}</h1>
       <section id="cards">
         <template v-for="index in 4" :key="index">
-          <FaceCard
-            v-if="index in cards"
-            :card-type="cards[index].cardType"
-            :card-score="cards[index].cardScore"
-            :card-slot="cards[index].cardSlot"
-            @lore-content="getLoreContent"
-            :class="cards[index].selected ? 'selected' : 'not-selected'"
-          />
-          <CardInput v-else :card-slot="index" @card-selected="returnSelectedCard" />
+          <div class="card">
+            <FaceCard
+              v-if="index in cards"
+              :card-type="cards[index].cardType"
+              :card-score="cards[index].cardScore"
+              :card-slot="cards[index].cardSlot"
+              @lore-content="getLoreContent"
+              :class="cards[index].selected ? 'selected' : 'not-selected'"
+            />
+            <CardInput v-else :card-slot="index" @card-selected="returnSelectedCard" />
+          </div>
         </template>
       </section>
       <section id="narrative">
@@ -182,6 +184,15 @@ const isNextSceneEnabled = computed(() => {
     justify-content: space-between;
     width: 100%;
     height: fit-content;
+  }
+
+  h1 {
+    color: var(--dark);
+  }
+
+  .card {
+    width: 303px;
+    height: 378px;
   }
 
   #hearts {

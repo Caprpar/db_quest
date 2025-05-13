@@ -57,14 +57,15 @@
       const data = await response.json();
       if (!response.ok) throw new Error(data.message || "Något gick fel.");
 
-
-      localStorage.setItem("user", JSON.stringify(data.user));
-
       error.value = "";
+<<<<<<< HEAD
       props.onSuccess?.(data.user);
       console.log(data.user.id);
       sessionStorage.setItem("userId", data.user.id);
 
+=======
+      props.onSuccess?.(name);
+>>>>>>> 5897975 (begin styling)
     } catch (err) {
       error.value = err.message;
     }
@@ -87,7 +88,7 @@
   .toggle {
     background: none;
     border: none;
-    color: blue;
+    color: rgb(19, 4, 226);
     text-decoration: underline;
     cursor: pointer;
   }

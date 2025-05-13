@@ -77,9 +77,9 @@
     display: flex;
     flex-direction: column;
     box-shadow: 1px 0 5px rgb(104, 104, 104, 0.5);
-    width: 19em;
+    width: 100%;
+    height: 100%;
     border-radius: 1em;
-    mine-height: 25em;
   }
   span {
     display: flex;
