@@ -1,4 +1,7 @@
 <script setup>
+  // import problemImg from '@/assets/problem.png'
+  // import aidImg from '@/assets/aid.png'
+  // import solutionImg from '@/assets/solution.png'
   import { ref, defineProps, defineEmits } from "vue";
   const emit = defineEmits(["lore-content"]);
   const props = defineProps({
@@ -27,14 +30,11 @@
 </script>
 
 <template>
-  <form
-    action=""
-    id="card"
-    @submit.prevent="getLoreContent(name, description, cardSlot)"
-    @click.prevent="getLoreContent(name, description, cardSlot)"
-  >
-    <div id="score">{{ cardScore }}</div>
-    <img :src="`@/assets/${cardType.toLowerCase()}.png`" :alt="cardType" />
+  <form action="" id="card" :class="cardType.toLowerCase()">
+    <div id="img-container" @click.prevent="getLoreContent(name, description, cardSlot)">
+      <div id="score">{{ cardScore }}</div>
+      <img class="card-image" :src="`/public/${cardType}.png`" :alt="cardType" />
+    </div>
     <input type="text" v-model="name" placeholder="Name" />
     <textarea type="textarea" v-model="description" placeholder="Description" />
     <!-- <input type="submit" value="Resolve" /> -->
@@ -44,6 +44,9 @@
 <style scoped>
   form {
     background-color: #f8f8f8;
+  }
+  .selected:hover {
+    border: solid red;
   }
   .selected {
     transform: scale(1.03);
@@ -55,9 +58,9 @@
   .not-selected {
     border: solid #8a8a8a60;
   }
-  #card:hover {
+  #card:hover:not(.selected) {
     /* transform: scale(1.03); */
-    border: solid var(--accent);
+    border: solid var(--dark);
     /* box-shadow: 0px 0px 20px #0000006b; */
   }
   #card {
@@ -96,26 +99,45 @@
     justify-content: center;
     font-family: Arial, Helvetica, sans-serif;
     font-size: 1.5em;
-    color: #3f3f3f;
+    color: var(--dark);
     align-items: center;
-    top: 206px;
-    right: 13px;
-    background-color: white;
-    border: dashed #918989;
+    bottom: 15px;
+    right: 15px;
+    background-color: #ffffffc9;
+    border: solid var(--dark);
     border-radius: 50%;
     width: 50px;
     height: 50px;
     /* left: 100%; */
   }
-  img {
-    border-radius: 50%;
+  #img-container {
+    position: relative;
+    border-radius: 1em 1em 0 0;
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 100%;
-    height: 296px;
-    background-color: #ddd;
-    color: #999;
+    height: 295px;
+  }
+
+  .problem {
+    background-color: #9fb9cf;
+  }
+  .aid {
+    background-color: #cf9f9f;
+  }
+  .solution {
+    background-color: #e0dfa0;
+  }
+
+  img {
+    /* border-radius: 50%; */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 50%;
+    height: auto;
+    /* background-color: #ddd; */
+    /* color: #999; */
     font-size: 4em;
     font-family:
       "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande", "Lucida Sans", Arial, sans-serif;

@@ -26,5 +26,6 @@
     width: 100%;
     height: 30vh;
     resize: vertical;
+    border: none;
   }
 </style>
