@@ -6,19 +6,28 @@
   const search = ref();
 
   onMounted(async () => {
-    sessions.value = await fetch("http://localhost:3000/api/sessions/finished").then((res) => {
-      console.log(res);
-      let data = res.json();
-      console.log(data);
-      return data;
-    });
+    sessions.value = await fetch("http://localhost:3000/api/sessions/finished")
+      .then((res) => {
+        return res.json();
+      })
+      .then((data) => {
+        console.log(data);
+        return data;
+      });
   });
 
   async function startSearch() {
-    sessions.value = await fetch("http://localhost:3000/api/sessions/finished").then((res) => {
-      let data = res.json();
-      return data;
-    });
+    sessions.value = await fetch("http://localhost:3000/api/sessions/finished")
+      .then((res) => {
+        return res.json();
+      })
+      .then((data) => {
+        console.log(data);
+        data = data.filter((session) => {
+          return session.title.includes(search.value);
+        });
+        return data;
+      });
     // console.log("hmmm");
   }
 </script>
