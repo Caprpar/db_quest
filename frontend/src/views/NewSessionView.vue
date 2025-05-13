@@ -59,7 +59,7 @@
       </select>
       <input type="text" v-model="test" />
     </div>
-    <button @click="startStory">Start</button>
+    <button @click="startStory">Start Adventure</button>
   </div>
 </template>
 
