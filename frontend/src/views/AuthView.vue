@@ -5,19 +5,16 @@
 </template>
 
 <script setup>
-import UserForms from '@/components/UserForms.vue'
-import { useRouter } from 'vue-router'
+  import UserForms from "@/components/UserForms.vue";
+  import { useRouter } from "vue-router";
 
-const router = useRouter()
+  const router = useRouter();
 
-const handleSuccess = (name) => {
-  localStorage.setItem('username', name)
-  router.push('/about') //Tillfällig
-}
+  const handleSuccess = (name) => {
+    localStorage.setItem("username", name);
+    router.push("/about"); //Tillfällig
+  };
 </script>
-
-
-
 
 <!-- <template>
   <div>
@@ -38,4 +35,3 @@ const handleSuccess = (name) => {
     router.push('/about') // byt till den route du vill ha efter login
   }
   </script> -->
-  

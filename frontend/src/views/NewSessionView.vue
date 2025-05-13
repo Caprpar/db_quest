@@ -34,7 +34,7 @@
         sessionTitle: "",
         sessionPrompt: test.value,
         sessionNarrative: "",
-        sessionUserId: 1
+        sessionUserId: sessionStorage.getItem("userId")
       })
     })
       .then((res) => res.json())
