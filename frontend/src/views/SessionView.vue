@@ -5,7 +5,7 @@
   import FaceCard from "@/components/FaceCard.vue";
   import CardInput from "@/components/CardInput.vue";
   import NarrativeText from "@/components/NarrativeText.vue";
-  import { ref, defineEmits, computed } from "vue";
+  import { ref, defineEmits, computed, onMounted } from "vue";
   import {
     getCardById,
     getCards,
@@ -16,13 +16,24 @@
 
   import { newScene } from "@/services/sceneService";
   const emit = defineEmits(["update-health"]);
-  const hp = ref(0);
+  const hp = ref(20);
   const scenes = [];
   const currentScene = ref([]);
   const prompt = ref("");
   const cards = ref({});
-  prompt.value = "det var en gång som var saltad";
-  hp.value = 20;
+
+  // on mounted called at start of loading page to get prompt of session
+  onMounted(async () => {
+    const sessionId = sessionStorage.getItem("sessionId");
+    prompt.value = await fetch(`http://localhost:3000/api/sessions/${sessionId}`)
+      .then((response) => {
+        return response.json();
+      })
+      .then((result) => {
+        return result[0].prompt;
+      });
+  });
+
   // Mata in 4 random kort i en scen
 
   function updateHealth(health) {
