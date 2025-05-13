@@ -33,7 +33,7 @@
   <form action="" id="card" :class="cardType.toLowerCase()">
     <div id="img-container" @click.prevent="getLoreContent(name, description, cardSlot)">
       <div id="score">{{ cardScore }}</div>
-      <img class="card-image" :src="`/public/${cardType}.png`" :alt="cardType" />
+      <img class="card-image" :src="`/public/${cardType.toLowerCase()}.png`" :alt="cardType" />
     </div>
     <input type="text" v-model="name" placeholder="Name" />
     <textarea type="textarea" v-model="description" placeholder="Description" />
