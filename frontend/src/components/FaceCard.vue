@@ -70,7 +70,6 @@
     transform: scale(1.03);
     box-shadow: 0px 0px 15px var(--dark-transparent);
     border: none;
-    border-collapse:;
     border: solid var(--green);
   }
   .not-selected {

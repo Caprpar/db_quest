@@ -80,7 +80,7 @@
     } catch (err) {
       console.error("Patch failed", err);
     }
-    router.push("/new");
+    router.push("/browser");
   }
 
   /**
@@ -145,7 +145,7 @@
       </section>
       <section id="narrative">
         <div id="hearts">
-          <HealthBar />
+          <HealthBar health-points="20" />
         </div>
         <NarrativeText @narration-to-session="postNarrative" />
       </section>
