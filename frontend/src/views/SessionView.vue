@@ -3,7 +3,7 @@
   import FaceCard from "@/components/FaceCard.vue";
   import CardInput from "@/components/CardInput.vue";
   import NarrativeText from "@/components/NarrativeText.vue";
-  import { ref, defineEmits } from "vue";
+  import { ref, defineEmits, computed } from "vue";
   import {
     getCardById,
     getCards,
@@ -73,6 +73,15 @@
     }
     newScene(Number(sessionStorage.getItem("sessionId")));
   }
+
+  const isNextSceneEnabled = computed(() => {
+    return Object.keys(cards.value).length === 3;
+  });
+
+  function nextScene() {
+    console.log("Next scene triggered!");
+    // Här kan vi lägga till logik för next scene
+  }
 </script>
 
 <template>
@@ -99,6 +108,9 @@
         <NarrativeText @narration-to-session="postNarrative" />
       </section>
       <button @click="newSceneAction">Ny scene</button>
+    </div>
+    <div style="margin-top: 1em">
+      <button :disabled="!isNextSceneEnabled" @click="nextScene">Next scene</button>
     </div>
   </main>
 </template>
