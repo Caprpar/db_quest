@@ -58,14 +58,9 @@
       if (!response.ok) throw new Error(data.message || "Något gick fel.");
 
       error.value = "";
-<<<<<<< HEAD
       props.onSuccess?.(data.user);
       console.log(data.user.id);
       sessionStorage.setItem("userId", data.user.id);
-
-=======
-      props.onSuccess?.(name);
->>>>>>> 5897975 (begin styling)
     } catch (err) {
       error.value = err.message;
     }
