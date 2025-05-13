@@ -80,7 +80,7 @@
     } catch (err) {
       console.error("Patch failed", err);
     }
-    router.push("/new");
+    router.push("/browser");
   }
 
   /**
