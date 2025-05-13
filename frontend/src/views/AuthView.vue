@@ -13,7 +13,7 @@
 
 const handleSuccess = (user) => {
   localStorage.setItem('user', JSON.stringify(user))
-  router.push('/about') // tillfällig redirect
+  router.push('/profile') // tillfällig redirect
 }
 
 

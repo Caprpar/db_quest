@@ -62,6 +62,7 @@
   }
 
   async function postNarrative(narrative) {
+
     console.log(narrative);
 
     const sessionId = sessionStorage.getItem("sessionId");
@@ -73,7 +74,8 @@
 
     try {
       const res = await axios.patch(`http://localhost:3000/api/sessions/${sessionId}`, {
-        narrative: narrative
+        narrative: titleAndNarration.narrative,
+        title: titleAndNarration.title
       });
       console.log("Patch response:", res.data);
     } catch (err) {
