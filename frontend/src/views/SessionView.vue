@@ -61,8 +61,7 @@
     delete cards.value[cardSlot];
   }
 
-  async function postNarrative(narrative) {
-
+  async function postNarrative(titleAndNarration) {
     console.log(narrative);
 
     const sessionId = sessionStorage.getItem("sessionId");
